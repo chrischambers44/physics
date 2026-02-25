@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Stores and Systems - GCSE Physics</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+        
+        section {
+            padding: 40px;
+        }
+        
+        h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        h3 {
+            color: #764ba2;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .learning-objective {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .key-point {
+            background: #fff4e6;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .example {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        /* Flashcards */
+        .flashcards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .flashcard {
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            padding: 20px;
+            min-height: 150px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+        
+        .flashcard:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .flashcard.flipped .front {
+            display: none;
+        }
+        
+        .flashcard.flipped .back {
+            display: block;
+        }
+        
+        .flashcard .front {
+            display: block;
+        }
+        
+        .flashcard .back {
+            display: none;
+        }
+        
+        .flashcard-label {
+            font-size: 0.8em;
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .flashcard-content {
+            font-size: 1.1em;
+        }
+        
+        /* Quiz */
+        .quiz-question {
+            background: #f9f9f9;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .question-text {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .options {
+            list-style: none;
+        }
+        
+        .option {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .option:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+        
+        .option.selected {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+        
+        .option.correct {
+            border-color: #4caf50;
+            background: #e8f5e9;
+        }
+        
+        .option.incorrect {
+            border-color: #f44336;
+            background: #ffebee;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1em;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .quiz-result {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 1.2em;
+            text-align: center;
+            display: none;
+        }
+        
+        .quiz-result.show {
+            display: block;
+        }
+        
+        .quiz-result.pass {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border: 2px solid #4caf50;
+        }
+        
+        .quiz-result.fail {
+            background: #fff3e0;
+            color: #e65100;
+            border: 2px solid #ff9800;
+        }
+        
+        ul {
+            margin-left: 30px;
+            margin-top: 10px;
+        }
+        
+        li {
+            margin: 8px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background: #667eea;
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Energy Stores and Systems</h1>
+            <p class="subtitle">Understanding how energy is stored and transferred</p>
+        </header>
+        
+        <section id="teach">
+            <h2>Learn</h2>
+            
+            <div class="learning-objective">
+                <strong>Learning Objective:</strong> Describe all the changes involved in the way energy is stored when a system changes, for common situations.
+            </div>
+            
+            <h3>What is a System?</h3>
+            <p>A <strong>system</strong> is an object or group of objects that we are studying. When we look at energy changes, we need to define what our system is.</p>
+            
+            <div class="example">
+                <strong>Examples of systems:</strong>
+                <ul>
+                    <li>A ball being thrown</li>
+                    <li>A kettle boiling water</li>
+                    <li>A car and its surroundings</li>
+                    <li>The Earth and Moon</li>
+                </ul>
+            </div>
+            
+            <h3>Energy Stores</h3>
+            <p>Energy can be stored in different ways within a system:</p>
+            
+            <table>
+                <tr>
+                    <th>Energy Store</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+                <tr>
+                    <td><strong>Kinetic</strong></td>
+                    <td>Energy in moving objects</td>
+                    <td>A moving car, flowing water</td>
+                </tr>
+                <tr>
+                    <td><strong>Gravitational Potential</strong></td>
+                    <td>Energy stored in objects raised above the ground</td>
+                    <td>A book on a shelf, water at the top of a waterfall</td>
+                </tr>
+                <tr>
+                    <td><strong>Elastic Potential</strong></td>
+                    <td>Energy stored in stretched or compressed objects</td>
+                    <td>Stretched spring, compressed rubber band</td>
+                </tr>
+                <tr>
+                    <td><strong>Thermal</strong></td>
+                    <td>Energy stored in hot objects</td>
+                    <td>Hot water, warm radiator</td>
+                </tr>
+                <tr>
+                    <td><strong>Chemical</strong></td>
+                    <td>Energy stored in chemical bonds</td>
+                    <td>Food, batteries, fuel</td>
+                </tr>
+                <tr>
+                    <td><strong>Nuclear</strong></td>
+                    <td>Energy stored in atomic nuclei</td>
+                    <td>Uranium fuel, Sun's core</td>
+                </tr>
+                <tr>
+                    <td><strong>Electrostatic</strong></td>
+                    <td>Energy stored in charged objects</td>
+                    <td>Rubbed balloon, thunderclouds</td>
+                </tr>
+                <tr>
+                    <td><strong>Magnetic</strong></td>
+                    <td>Energy stored in magnetic objects</td>
+                    <td>Two magnets near each other</td>
+                </tr>
+            </table>
+            
+            <h3>Common Energy Changes</h3>
+            
+            <div class="key-point">
+                <strong>Key Point:</strong> Energy is never created or destroyed - it just moves between different stores. This is called the <em>conservation of energy</em>.
+            </div>
+            
+            <h3>Worked Examples</h3>
+            
+            <div class="example">
+                <strong>Example 1: Object Projected Upwards</strong>
+                <p>When you throw a ball upwards:</p>
+                <ul>
+                    <li><strong>Start:</strong> Ball has kinetic energy (it's moving)</li>
+                    <li><strong>Rising:</strong> Kinetic energy decreases, gravitational potential energy increases</li>
+                    <li><strong>Top:</strong> All kinetic energy has transferred to gravitational potential energy (ball stops momentarily)</li>
+                    <li><strong>Falling:</strong> Gravitational potential energy transfers back to kinetic energy</li>
+                    <li><strong>Note:</strong> Some energy is transferred to thermal energy due to air resistance</li>
+                </ul>
+            </div>
+            
+            <div class="example">
+                <strong>Example 2: Moving Object Hitting an Obstacle</strong>
+                <p>When a car crashes into a wall:</p>
+                <ul>
+                    <li><strong>Before:</strong> Car has kinetic energy</li>
+                    <li><strong>During crash:</strong> Kinetic energy transfers to thermal energy (heat), sound energy, and elastic potential energy (car deforms)</li>
+                    <li><strong>After:</strong> Kinetic energy is zero - the car has stopped</li>
+                </ul>
+            </div>
+            
+            <div class="example">
+                <strong>Example 3: Object Accelerated by a Constant Force</strong>
+                <p>When a car accelerates:</p>
+                <ul>
+                    <li>Chemical energy in fuel transfers to kinetic energy of the car</li>
+                    <li>Some energy also transfers to thermal energy (engine heat, friction) and sound energy</li>
+                </ul>
+            </div>
+            
+            <div class="example">
+                <strong>Example 4: Vehicle Slowing Down</strong>
+                <p>When a car brakes:</p>
+                <ul>
+                    <li>Kinetic energy transfers to thermal energy in the brakes</li>
+                    <li>Some energy transfers to sound energy</li>
+                    <li>The brakes get hot!</li>
+                </ul>
+            </div>
+            
+            <div class="example">
+                <strong>Example 5: Bringing Water to Boil in an Electric Kettle</strong>
+                <p>When you boil a kettle:</p>
+                <ul>
+                    <li>Electrical energy from the mains transfers to thermal energy in the heating element</li>
+                    <li>Thermal energy transfers to the water, increasing its temperature</li>
+                    <li>Some thermal energy is wasted to the surroundings (kettle gets hot on the outside)</li>
+                </ul>
+            </div>
+            
+            <div class="key-point">
+                <strong>Remember:</strong> In all these examples, energy is transferred between different stores, but the total amount of energy stays the same. Some energy is often "wasted" as thermal energy that spreads to the surroundings.
+            </div>
+        </section>
+        
+        <section id="flashcards">
+            <h2>Test Your Understanding - Flashcards</h2>
+            <p style="margin-bottom: 20px; color: #666;">Click each card to reveal the answer</p>
+            
+            <div class="flashcards">
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="front">
+                        <div class="flashcard-label">QUESTION</div>
+                        <div class="flashcard-content">What is a system in physics?</div>
+                    </div>
+                    <div class="back">
+                        <div class="flashcard-label">ANSWER</div>
+                        <div class="flashcard-content">An object or group of objects being studied</div>
+                    </div>
+                </div>
+                
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="front">
+                        <div class="flashcard-label">QUESTION</div>
+                        <div class="flashcard-content">Name the energy store in a moving car</div>
+                    </div>
+                    <div class="back">
+                        <div class="flashcard-label">ANSWER</div>
+                        <div class="flashcard-content">Kinetic energy</div>
+                    </div>
+                </div>
+                
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="front">
+                        <div class="flashcard-label">QUESTION</div>
+                        <div class="flashcard-content">What type of energy is stored in a stretched spring?</div>
+                    </div>
+                    <div class="back">
+                        <div class="flashcard-label">ANSWER</div>
+                        <div class="flashcard-content">Elastic potential energy</div>
+                    </div>
+                </div>
+                
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="front">
+                        <div class="flashcard-label">QUESTION</div>
+                        <div class="flashcard-content">What happens to a ball's energy as it rises after being thrown?</div>
+                    </div>
+                    <div class="back">
+                        <div class="flashcard-label">ANSWER</div>
+                        <div class="flashcard-content">Kinetic energy transfers to gravitational potential energy</div>
+                    </div>
+                </div>
+                
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="front">
+                        <div class="flashcard-label">QUESTION</div>
+                        <div class="flashcard-content">Where does the kinetic energy go when a car brakes?</div>
+                    </div>
+                    <div class="back">
+                        <div class="flashcard-label">ANSWER</div>
+                        <div class="flashcard-content">It transfers to thermal energy in the brakes (they get hot)</div>
+                    </div>
+                </div>
+                
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="front">
+                        <div class="flashcard-label">QUESTION</div>
+                        <div class="flashcard-content">Can energy be created or destroyed?</div>
+                    </div>
+                    <div class="back">
+                        <div class="flashcard-label">ANSWER</div>
+                        <div class="flashcard-content">No - energy is conserved. It can only be transferred between different stores</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="quiz">
+            <h2>Quiz - Test Your Knowledge</h2>
+            
+            <div class="quiz-question">
+                <div class="question-text">1. What is the main energy store in food?</div>
+                <ul class="options" data-question="1" data-answer="b">
+                    <li class="option" data-option="a">Thermal energy</li>
+                    <li class="option" data-option="b">Chemical energy</li>
+                    <li class="option" data-option="c">Kinetic energy</li>
+                    <li class="option" data-option="d">Nuclear energy</li>
+                </ul>
+            </div>
+            
+            <div class="quiz-question">
+                <div class="question-text">2. When a ball is at the top of its trajectory after being thrown upwards, which energy store is at maximum?</div>
+                <ul class="options" data-question="2" data-answer="c">
+                    <li class="option" data-option="a">Kinetic energy</li>
+                    <li class="option" data-option="b">Thermal energy</li>
+                    <li class="option" data-option="c">Gravitational potential energy</li>
+                    <li class="option" data-option="d">Elastic potential energy</li>
+                </ul>
+            </div>
+            
+            <div class="quiz-question">
+                <div class="question-text">3. What energy transfer occurs when an electric kettle heats water?</div>
+                <ul class="options" data-question="3" data-answer="b">
+                    <li class="option" data-option="a">Chemical energy → thermal energy</li>
+                    <li class="option" data-option="b">Electrical energy → thermal energy</li>
+                    <li class="option" data-option="c">Kinetic energy → thermal energy</li>
+                    <li class="option" data-option="d">Nuclear energy → thermal energy</li>
+                </ul>
+            </div>
+            
+            <div class="quiz-question">
+                <div class="question-text">4. A car crashes into a wall. What happens to the car's kinetic energy?</div>
+                <ul class="options" data-question="4" data-answer="d">
+                    <li class="option" data-option="a">It disappears</li>
+                    <li class="option" data-option="b">It is destroyed</li>
+                    <li class="option" data-option="c">It stays as kinetic energy</li>
+                    <li class="option" data-option="d">It transfers mainly to thermal energy and sound</li>
+                </ul>
+            </div>
+            
+            <div class="quiz-question">
+                <div class="question-text">5. Which of these is NOT an energy store?</div>
+                <ul class="options" data-question="5" data-answer="c">
+                    <li class="option" data-option="a">Kinetic</li>
+                    <li class="option" data-option="b">Chemical</li>
+                    <li class="option" data-option="c">Friction</li>
+                    <li class="option" data-option="d">Magnetic</li>
+                </ul>
+            </div>
+            
+            <button class="submit-btn" onclick="checkAnswers()">Submit Answers</button>
+            
+            <div id="quiz-result" class="quiz-result"></div>
+        </section>
+    </div>
+    
+    <script>
+        // Quiz functionality
+        let selectedAnswers = {};
+        
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', function() {
+                const questionNum = this.parentElement.dataset.question;
+                const selectedOption = this.dataset.option;
+                
+                // Remove selection from other options in this question
+                this.parentElement.querySelectorAll('.option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                
+                // Mark this option as selected
+                this.classList.add('selected');
+                selectedAnswers[questionNum] = selectedOption;
+            });
+        });
+        
+        function checkAnswers() {
+            let correct = 0;
+            let total = document.querySelectorAll('.options').length;
+            
+            document.querySelectorAll('.options').forEach(optionList => {
+                const questionNum = optionList.dataset.question;
+                const correctAnswer = optionList.dataset.answer;
+                const userAnswer = selectedAnswers[questionNum];
+                
+                optionList.querySelectorAll('.option').forEach(option => {
+                    const optionLetter = option.dataset.option;
+                    
+                    if (optionLetter === correctAnswer) {
+                        option.classList.add('correct');
+                    }
+                    
+                    if (userAnswer && optionLetter === userAnswer && optionLetter !== correctAnswer) {
+                        option.classList.add('incorrect');
+                    }
+                });
+                
+                if (userAnswer === correctAnswer) {
+                    correct++;
+                }
+            });
+            
+            // Show result
+            const resultDiv = document.getElementById('quiz-result');
+            const percentage = Math.round((correct / total) * 100);
+            
+            resultDiv.classList.add('show');
+            
+            if (percentage >= 70) {
+                resultDiv.classList.remove('fail');
+                resultDiv.classList.add('pass');
+                resultDiv.innerHTML = `🎉 Well done! You scored ${correct}/${total} (${percentage}%)`;
+            } else {
+                resultDiv.classList.remove('pass');
+                resultDiv.classList.add('fail');
+                resultDiv.innerHTML = `📚 You scored ${correct}/${total} (${percentage}%). Review the material and try again!`;
+            }
+            
+            // Disable submit button
+            document.querySelector('.submit-btn').disabled = true;
+        }
+    </script>
+</body>
+</html>
