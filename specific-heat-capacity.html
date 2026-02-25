@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Specific Heat Capacity - GCSE Physics</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 10px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 15px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            word-wrap: break-word;
+        }
+        
+        .subtitle {
+            opacity: 0.9;
+            font-size: 0.95em;
+        }
+        
+        section {
+            padding: 20px 15px;
+        }
+        
+        h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            word-wrap: break-word;
+        }
+        
+        h3 {
+            color: #764ba2;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            word-wrap: break-word;
+        }
+        
+        @media (min-width: 768px) {
+            body {
+                padding: 20px;
+            }
+            
+            header {
+                padding: 30px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .subtitle {
+                font-size: 1.1em;
+            }
+            
+            section {
+                padding: 40px;
+            }
+            
+            h2 {
+                font-size: 1.8em;
+            }
+            
+            h3 {
+                font-size: 1.3em;
+            }
+        }
+        
+        .learning-objective {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .key-point {
+            background: #fff4e6;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .example {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .formula-box {
+            background: #f5f5f5;
+            border: 2px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .formula {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #667eea;
+            margin: 10px 0;
+        }
+        
+        .formula-key {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 10px;
+        }
+        
+        /* Flashcards */
+        .flashcards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        @media (min-width: 600px) {
+            .flashcards {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+        
+        @media (min-width: 900px) {
+            .flashcards {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .flashcard {
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            padding: 20px 15px;
+            min-height: 120px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+        
+        .flashcard:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .flashcard.flipped .front {
+            display: none;
+        }
+        
+        .flashcard.flipped .back {
+            display: block;
+        }
+        
+        .flashcard .front {
+            display: block;
+        }
+        
+        .flashcard .back {
+            display: none;
+        }
+        
+        .flashcard-label {
+            font-size: 0.75em;
+            color: #667eea;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .flashcard-content {
+            font-size: 1em;
+            word-wrap: break-word;
+        }
+        
+        @media (min-width: 768px) {
+            .flashcard {
+                padding: 20px;
+                min-height: 150px;
+            }
+            
+            .flashcard-label {
+                font-size: 0.8em;
+            }
+            
+            .flashcard-content {
+                font-size: 1.1em;
+            }
+        }
+        
+        /* Quiz */
+        .quiz-question {
+            background: #f9f9f9;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .question-text {
+            font-size: 1em;
+            margin-bottom: 15px;
+            font-weight: 500;
+            word-wrap: break-word;
+        }
+        
+        @media (min-width: 768px) {
+            .quiz-question {
+                padding: 25px;
+                margin: 20px 0;
+            }
+            
+            .question-text {
+                font-size: 1.2em;
+                margin-bottom: 20px;
+            }
+        }
+        
+        .options {
+            list-style: none;
+        }
+        
+        .option {
+            background: white;
+            padding: 12px 10px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+        
+        @media (min-width: 768px) {
+            .option {
+                padding: 15px;
+                margin: 10px 0;
+                font-size: 1em;
+            }
+        }
+        
+        .option:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+        
+        .option.selected {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+        
+        .option.correct {
+            border-color: #4caf50;
+            background: #e8f5e9;
+        }
+        
+        .option.incorrect {
+            border-color: #f44336;
+            background: #ffebee;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1em;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        @media (min-width: 768px) {
+            .submit-btn {
+                padding: 15px 40px;
+                font-size: 1.1em;
+                margin-top: 20px;
+                width: auto;
+            }
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .quiz-result {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1em;
+            text-align: center;
+            display: none;
+            word-wrap: break-word;
+        }
+        
+        @media (min-width: 768px) {
+            .quiz-result {
+                margin-top: 20px;
+                padding: 20px;
+                font-size: 1.2em;
+            }
+        }
+        
+        .quiz-result.show {
+            display: block;
+        }
+        
+        .quiz-result.pass {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border: 2px solid #4caf50;
+        }
+        
+        .quiz-result.fail {
+            background: #fff3e0;
+            color: #e65100;
+            border: 2px solid #ff9800;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        
+        @media (min-width: 768px) {
+            ul {
+                margin-left: 30px;
+            }
+        }
+        
+        li {
+            margin: 8px 0;
+            word-wrap: break-word;
+        }
+        
+        p {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            display: block;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px 8px;
+            text-align: left;
+            min-width: 80px;
+        }
+        
+        th {
+            background: #667eea;
+            color: white;
+            font-size: 0.95em;
+        }
+        
+        td {
+            font-size: 0.9em;
+        }
+        
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        
+        @media (min-width: 768px) {
+            table {
+                display: table;
+            }
+            
+            th, td {
+                padding: 12px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Specific Heat Capacity</h1>
+            <p class="subtitle">Understanding temperature changes and energy transfer in materials</p>
+        </header>
+        
+        <section id="teach">
+            <h2>Learn</h2>
+            
+            <div class="learning-objective">
+                <strong>Learning Objective:</strong> Calculate the amount of energy stored in or released from a system as its temperature changes using specific heat capacity.
+            </div>
+            
+            <h3>What is Specific Heat Capacity?</h3>
+            <p>Different materials need different amounts of energy to heat up. Specific heat capacity tells us how much energy is needed to raise the temperature of 1 kg of a substance by 1°C.</p>
+            
+            <div class="key-point">
+                <strong>Definition:</strong> Specific heat capacity is the amount of energy required to raise the temperature of one kilogram of a substance by one degree Celsius.
+            </div>
+            
+            <h3>The Formula</h3>
+            
+            <div class="formula-box">
+                <div class="formula">ΔE = m c Δθ</div>
+                <div class="formula-key">
+                    ΔE = change in thermal energy (J)<br>
+                    m = mass (kg)<br>
+                    c = specific heat capacity (J/kg°C)<br>
+                    Δθ = temperature change (°C)
+                </div>
+            </div>
+            
+            <div class="key-point">
+                <strong>Remember:</strong> The Greek letter Δ (delta) means "change in". So Δθ means the change in temperature (final temperature - initial temperature).
+            </div>
+            
+            <h3>Common Specific Heat Capacities</h3>
+            <p>Different materials have different specific heat capacities:</p>
+            
+            <table>
+                <tr>
+                    <th>Material</th>
+                    <th>Specific Heat Capacity (J/kg°C)</th>
+                </tr>
+                <tr>
+                    <td>Water</td>
+                    <td>4200</td>
+                </tr>
+                <tr>
+                    <td>Aluminium</td>
+                    <td>900</td>
+                </tr>
+                <tr>
+                    <td>Copper</td>
+                    <td>385</td>
+                </tr>
+                <tr>
+                    <td>Iron/Steel</td>
+                    <td>450</td>
+                </tr>
+                <tr>
+                    <td>Air</td>
+                    <td>1000</td>
+                </tr>
+            </table>
+            
+            <div class="key-point">
+                <strong>Important:</strong> Water has a very high specific heat capacity (4200 J/kg°C). This means water takes a lot of energy to heat up, but also holds heat well. This is why water is used in central heating systems and why coastal areas have milder climates.
+            </div>
+            
+            <h3>Worked Examples</h3>
+            
+            <div class="example">
+                <strong>Example 1:</strong> How much energy is needed to heat 2 kg of water from 20°C to 100°C? (c for water = 4200 J/kg°C)
+                <p style="margin-top: 10px;">
+                    <strong>Solution:</strong><br>
+                    First, find the temperature change: Δθ = 100 - 20 = 80°C<br>
+                    <br>
+                    ΔE = m c Δθ<br>
+                    ΔE = 2 × 4200 × 80<br>
+                    ΔE = 672,000 J or 672 kJ
+                </p>
+            </div>
+            
+            <div class="example">
+                <strong>Example 2:</strong> A 0.5 kg block of aluminium is heated and its temperature rises by 50°C. How much energy was transferred to it? (c for aluminium = 900 J/kg°C)
+                <p style="margin-top: 10px;">
+                    <strong>Solution:</strong><br>
+                    ΔE = m c Δθ<br>
+                    ΔE = 0.5 × 900 × 50<br>
+                    ΔE = 22,500 J or 22.5 kJ
+                </p>
+            </div>
+            
+            <div class="example">
+                <strong>Example 3:</strong> 50,000 J of energy is supplied to 1 kg of copper. Calculate the temperature rise. (c for copper = 385 J/kg°C)
+                <p style="margin-top: 10px;">
+                    <strong>Solution:</strong><br>
+                    ΔE = m c Δθ<br>
+                    50,000 = 1 × 385 × Δθ<br>
+                    50,000 = 385Δθ<br>
+                    Δθ = 50,000 ÷ 385<br>
+                    Δθ = 130°C (approximately)
+                </p>
+            </div>
+            
+            <h3>Why Does This Matter?</h3>
+            
+            <div class="example">
+                <strong>Central Heating Systems</strong>
+                <p>Water is used in central heating because its high specific heat capacity means it can carry a lot of energy from the boiler to radiators throughout the house.</p>
+            </div>
+            
+            <div class="example">
+                <strong>Cooking</strong>
+                <p>Metals with low specific heat capacity (like copper) heat up quickly, which is why copper-bottomed pans are popular - they respond quickly to temperature changes.</p>
+            </div>
+            
+            <div class="example">
+                <strong>Climate</strong>
+                <p>Coastal areas have milder climates because water in the sea has a high specific heat capacity - it takes a long time to heat up in summer and a long time to cool down in winter, moderating the temperature.</p>
+            </div>
+            
+            <h3>Practical Investigation</h3>
+            <p>In the required practical, you would:</p>
+            <ul>
+                <li>Measure the mass of a material (like a metal block)</li>
+                <li>Heat it with a known amount of electrical energy</li>
+                <li>Measure the temperature change</li>
+                <li>Use the formula rearranged to calculate c: c = ΔE ÷ (m × Δθ)</li>
+            </ul>
+        </section>
+        
+        <section id="flashcards">
+            <h2>Test Your Understanding - Flashcards</h2>
+            <p style="margin-bottom: 20px; color: #666;">Click each card to reveal the answer</p>
+            
+            <div class="flashcards">
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="front">
+                        <div class="flashcard-label">QUESTION</div>
+                        <div class="flashcard-content">What is specific heat capacity?</div>
+                    </div>
+                    <div class="back">
+                        <div class="flashcard-label">ANSWER</div>
+                        <div class="flashcard-content">The amount of energy required to raise the temperature of 1 kg of a substance by 1°C</div>
+                    </div>
+                </div>
+                
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="front">
+                        <div class="flashcard-label">QUESTION</div>
+                        <div class="flashcard-content">What is the formula for calculating energy change with temperature?</div>
+                    </div>
+                    <div class="back">
+                        <div class="flashcard-label">ANSWER</div>
+                        <div class="flashcard-content">ΔE = m c Δθ (change in energy = mass × specific heat capacity × temperature change)</div>
+                    </div>
+                </div>
+                
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="front">
+                        <div class="flashcard-label">QUESTION</div>
+                        <div class="flashcard-content">What is the specific heat capacity of water?</div>
+                    </div>
+                    <div class="back">
+                        <div class="flashcard-label">ANSWER</div>
+                        <div class="flashcard-content">4200 J/kg°C (very high compared to most materials)</div>
+                    </div>
+                </div>
+                
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="front">
+                        <div class="flashcard-label">QUESTION</div>
+                        <div class="flashcard-content">Why is water used in central heating systems?</div>
+                    </div>
+                    <div class="back">
+                        <div class="flashcard-label">ANSWER</div>
+                        <div class="flashcard-content">Because it has a high specific heat capacity, so it can carry a lot of energy</div>
+                    </div>
+                </div>
+                
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="front">
+                        <div class="flashcard-label">QUESTION</div>
+                        <div class="flashcard-content">What does Δ (delta) mean in the formula?</div>
+                    </div>
+                    <div class="back">
+                        <div class="flashcard-label">ANSWER</div>
+                        <div class="flashcard-content">"Change in" - so Δθ means change in temperature, ΔE means change in energy</div>
+                    </div>
+                </div>
+                
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="front">
+                        <div class="flashcard-label">QUESTION</div>
+                        <div class="flashcard-content">Why do coastal areas have milder climates?</div>
+                    </div>
+                    <div class="back">
+                        <div class="flashcard-label">ANSWER</div>
+                        <div class="flashcard-content">Water's high specific heat capacity means the sea takes a long time to heat up or cool down, moderating temperature changes</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="quiz">
+            <h2>Quiz - Test Your Knowledge</h2>
+            
+            <div class="quiz-question">
+                <div class="question-text">1. How much energy is needed to heat 1 kg of water by 10°C? (c = 4200 J/kg°C)</div>
+                <ul class="options" data-question="1" data-answer="c">
+                    <li class="option" data-option="a">420 J</li>
+                    <li class="option" data-option="b">4,200 J</li>
+                    <li class="option" data-option="c">42,000 J</li>
+                    <li class="option" data-option="d">420,000 J</li>
+                </ul>
+            </div>
+            
+            <div class="quiz-question">
+                <div class="question-text">2. Which material has the highest specific heat capacity?</div>
+                <ul class="options" data-question="2" data-answer="a">
+                    <li class="option" data-option="a">Water</li>
+                    <li class="option" data-option="b">Copper</li>
+                    <li class="option" data-option="c">Aluminium</li>
+                    <li class="option" data-option="d">Iron</li>
+                </ul>
+            </div>
+            
+            <div class="quiz-question">
+                <div class="question-text">3. A 2 kg block of aluminium (c = 900 J/kg°C) is heated from 20°C to 70°C. How much energy is transferred?</div>
+                <ul class="options" data-question="3" data-answer="d">
+                    <li class="option" data-option="a">9,000 J</li>
+                    <li class="option" data-option="b">36,000 J</li>
+                    <li class="option" data-option="c">63,000 J</li>
+                    <li class="option" data-option="d">90,000 J</li>
+                </ul>
+            </div>
+            
+            <div class="quiz-question">
+                <div class="question-text">4. What does a high specific heat capacity mean?</div>
+                <ul class="options" data-question="4" data-answer="b">
+                    <li class="option" data-option="a">The material heats up very quickly</li>
+                    <li class="option" data-option="b">The material needs a lot of energy to change temperature</li>
+                    <li class="option" data-option="c">The material is very dense</li>
+                    <li class="option" data-option="d">The material is a good conductor</li>
+                </ul>
+            </div>
+            
+            <div class="quiz-question">
+                <div class="question-text">5. In the formula ΔE = m c Δθ, what does Δθ represent?</div>
+                <ul class="options" data-question="5" data-answer="c">
+                    <li class="option" data-option="a">The final temperature</li>
+                    <li class="option" data-option="b">The initial temperature</li>
+                    <li class="option" data-option="c">The temperature change</li>
+                    <li class="option" data-option="d">The average temperature</li>
+                </ul>
+            </div>
+            
+            <button class="submit-btn" onclick="checkAnswers()">Submit Answers</button>
+            
+            <div id="quiz-result" class="quiz-result"></div>
+        </section>
+    </div>
+    
+    <script>
+        // Quiz functionality
+        let selectedAnswers = {};
+        
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', function() {
+                const questionNum = this.parentElement.dataset.question;
+                const selectedOption = this.dataset.option;
+                
+                // Remove selection from other options in this question
+                this.parentElement.querySelectorAll('.option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                
+                // Mark this option as selected
+                this.classList.add('selected');
+                selectedAnswers[questionNum] = selectedOption;
+            });
+        });
+        
+        function checkAnswers() {
+            let correct = 0;
+            let total = document.querySelectorAll('.options').length;
+            
+            document.querySelectorAll('.options').forEach(optionList => {
+                const questionNum = optionList.dataset.question;
+                const correctAnswer = optionList.dataset.answer;
+                const userAnswer = selectedAnswers[questionNum];
+                
+                optionList.querySelectorAll('.option').forEach(option => {
+                    const optionLetter = option.dataset.option;
+                    
+                    if (optionLetter === correctAnswer) {
+                        option.classList.add('correct');
+                    }
+                    
+                    if (userAnswer && optionLetter === userAnswer && optionLetter !== correctAnswer) {
+                        option.classList.add('incorrect');
+                    }
+                });
+                
+                if (userAnswer === correctAnswer) {
+                    correct++;
+                }
+            });
+            
+            // Show result
+            const resultDiv = document.getElementById('quiz-result');
+            const percentage = Math.round((correct / total) * 100);
+            
+            resultDiv.classList.add('show');
+            
+            if (percentage >= 70) {
+                resultDiv.classList.remove('fail');
+                resultDiv.classList.add('pass');
+                resultDiv.innerHTML = `🎉 Well done! You scored ${correct}/${total} (${percentage}%)`;
+            } else {
+                resultDiv.classList.remove('pass');
+                resultDiv.classList.add('fail');
+                resultDiv.innerHTML = `📚 You scored ${correct}/${total} (${percentage}%). Review the material and try again!`;
+            }
+            
+            // Disable submit button
+            document.querySelector('.submit-btn').disabled = true;
+        }
+    </script>
+</body>
+</html>
