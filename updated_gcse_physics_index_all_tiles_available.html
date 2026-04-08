@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCSE Physics Lessons - AQA Science 8464</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 10px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 15px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            word-wrap: break-word;
+        }
+        
+        .subtitle {
+            opacity: 0.9;
+            font-size: 0.9em;
+        }
+        
+        @media (min-width: 768px) {
+            body {
+                padding: 20px;
+            }
+            
+            header {
+                padding: 50px 30px;
+            }
+            
+            h1 {
+                font-size: 2.5em;
+            }
+            
+            .subtitle {
+                font-size: 1.2em;
+            }
+        }
+        
+        .intro {
+            padding: 20px 15px;
+            text-align: center;
+            background: #f8f9fa;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .intro p {
+            font-size: 0.95em;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        @media (min-width: 768px) {
+            .intro {
+                padding: 40px;
+            }
+            
+            .intro p {
+                font-size: 1.1em;
+            }
+        }
+        
+        section {
+            padding: 20px 15px;
+        }
+        
+        @media (min-width: 768px) {
+            section {
+                padding: 40px;
+            }
+        }
+        
+        h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            word-wrap: break-word;
+        }
+        
+        @media (min-width: 768px) {
+            h2 {
+                margin-bottom: 25px;
+                font-size: 1.8em;
+            }
+        }
+        
+        .topic-section {
+            margin-bottom: 30px;
+        }
+        
+        @media (min-width: 768px) {
+            .topic-section {
+                margin-bottom: 40px;
+            }
+        }
+        
+        h3 {
+            color: #764ba2;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            word-wrap: break-word;
+        }
+        
+        @media (min-width: 768px) {
+            h3 {
+                font-size: 1.4em;
+            }
+        }
+        
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        @media (min-width: 600px) {
+            .lessons-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+        
+        @media (min-width: 900px) {
+            .lessons-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                margin-top: 20px;
+            }
+        }
+        
+        .lesson-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 15px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #333;
+            display: block;
+        }
+        
+        @media (min-width: 768px) {
+            .lesson-card {
+                padding: 20px;
+            }
+        }
+        
+        .lesson-card.available:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+            border-color: #667eea;
+        }
+        
+        .lesson-card h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1em;
+            word-wrap: break-word;
+        }
+        
+        @media (min-width: 768px) {
+            .lesson-card h4 {
+                font-size: 1.1em;
+            }
+        }
+        
+        .lesson-card p {
+            color: #666;
+            font-size: 0.85em;
+            line-height: 1.5;
+            word-wrap: break-word;
+        }
+        
+        @media (min-width: 768px) {
+            .lesson-card p {
+                font-size: 0.95em;
+            }
+        }
+        
+        .lesson-status {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+        
+        @media (min-width: 768px) {
+            .lesson-status {
+                padding: 4px 12px;
+                font-size: 0.8em;
+            }
+        }
+        
+        .status-available {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        
+        .status-coming {
+            background: #fff3e0;
+            color: #e65100;
+        }
+
+        .lesson-card.coming-soon {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .lesson-card.available {
+            opacity: 1;
+            cursor: pointer;
+        }
+        
+        footer {
+            background: #f8f9fa;
+            padding: 20px 15px;
+            text-align: center;
+            color: #666;
+            border-top: 3px solid #667eea;
+        }
+        
+        footer p {
+            font-size: 0.9em;
+            margin: 5px 0;
+        }
+        
+        @media (min-width: 768px) {
+            footer {
+                padding: 30px;
+            }
+            
+            footer p {
+                font-size: 1em;
+            }
+        }
+        
+        .progress-summary {
+            background: linear-gradient(135deg, #f0f4ff 0%, #faf0ff 100%);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        @media (min-width: 768px) {
+            .progress-summary {
+                padding: 20px;
+                margin-bottom: 30px;
+            }
+        }
+        
+        .progress-summary p {
+            font-size: 0.95em;
+            color: #555;
+            margin: 5px 0;
+        }
+        
+        @media (min-width: 768px) {
+            .progress-summary p {
+                font-size: 1.1em;
+            }
+        }
+        
+        .progress-bar {
+            background: #e0e0e0;
+            height: 20px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-top: 12px;
+        }
+        
+        @media (min-width: 768px) {
+            .progress-bar {
+                height: 25px;
+                margin-top: 15px;
+            }
+        }
+        
+        .progress-fill {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.8em;
+        }
+        
+        @media (min-width: 768px) {
+            .progress-fill {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>GCSE Physics Lessons</h1>
+            <p class="subtitle">AQA Combined Science: Trilogy (8464) - Physics Subject Content</p>
+        </header>
+        
+        <div class="intro">
+            <p>Welcome to your interactive GCSE Physics revision resource! Each lesson includes clear teaching content, interactive flashcards for self-testing, and a quiz to check your understanding.</p>
+        </div>
+        
+        <section>
+            <div class="progress-summary">
+                <p><strong>Course Progress</strong></p>
+                <p id="progress-text">Checking available lessons...</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill">0%</div>
+                </div>
+            </div>
+            
+            <div class="topic-section">
+                <h2>6.1 Energy</h2>
+                
+                <h3>Energy changes in a system</h3>
+                <div class="lessons-grid">
+                    <a href="energy-stores-and-systems.html" class="lesson-card lesson-link" data-file="energy-stores-and-systems.html">
+                        <h4>Energy Stores and Systems</h4>
+                        <p>Learn about different energy stores and how energy transfers between them in common situations.</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                    
+                    <a href="changes-in-energy.html" class="lesson-card lesson-link" data-file="changes-in-energy.html">
+                        <h4>Changes In Energy</h4>
+                        <p>Calculate kinetic energy, elastic potential energy, and gravitational energy.</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                    
+                    <a href="specific-heat-capacity.html" class="lesson-card lesson-link" data-file="specific-heat-capacity.html">
+                        <h4>Specific Heat Capacity</h4>
+                        <p>Understand temperature changes in systems and calculate thermal energy changes</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                    
+                    <a href="power.html" class="lesson-card lesson-link" data-file="power.html">
+                        <h4>Power</h4>
+                        <p>Define power and calculate the rate of energy transfer in different solutions.</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                </div>
+                
+                <h3>Conservation and dissipation of energy</h3>
+                <div class="lessons-grid">
+                    <a href="energy-transfers-and-efficiency.html" class="lesson-card lesson-link" data-file="energy-transfers-and-efficiency.html">
+                        <h4>Energy Transfers and Efficiency</h4>
+                        <p>Learn about useful and wasted energy, and how to calculate efficiency.</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                </div>
+                
+                <h3>National and global energy resources</h3>
+                <div class="lessons-grid">
+                    <a href="energy-resources.html" class="lesson-card lesson-link" data-file="energy-resources.html">
+                        <h4>Energy Resources</h4>
+                        <p>Compare renewable and non-renewable energy resources and their environmental impact.</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="topic-section">
+                <h2>6.2 Electricity</h2>
+                
+                <h3>Current, potential difference and resistance</h3>
+                <div class="lessons-grid">
+                    <a href="circuit-symbols-and-current.html" class="lesson-card lesson-link" data-file="circuit-symbols-and-current.html">
+                        <h4>Circuit Symbols and Current</h4>
+                        <p>Learn standard circuit symbols and understand electric current and charge flow.</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                    
+                    <a href="potential-difference-and-resistance.html" class="lesson-card lesson-link" data-file="potential-difference-and-resistance.html">
+                        <h4>Potential Difference and Resistance</h4>
+                        <p>Understand Ohm's law and calculate current, voltage and resistance.</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                    
+                    <a href="resistors-and-components.html" class="lesson-card lesson-link" data-file="resistors-and-components.html">
+                        <h4>Resistors and Components</h4>
+                        <p>Explore different types of resistors including thermistors and LDRs.</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                </div>
+                
+                <h3>Series and parallel circuits</h3>
+                <div class="lessons-grid">
+                    <a href="series-and-parallel-circuits.html" class="lesson-card lesson-link" data-file="series-and-parallel-circuits.html">
+                        <h4>Series and Parallel Circuits</h4>
+                        <p>Compare series and parallel circuits and calculate values in both types.</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                </div>
+                
+                <h3>Domestic uses and safety</h3>
+                <div class="lessons-grid">
+                    <a href="mains-electricity-and-safety.html" class="lesson-card lesson-link" data-file="mains-electricity-and-safety.html">
+                        <h4>Mains Electricity and Safety</h4>
+                        <p>Learn about AC/DC, the three-pin plug, and electrical safety at home.</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                </div>
+                
+                <h3>Energy transfers</h3>
+                <div class="lessons-grid">
+                    <a href="power-and-energy-in-circuits.html" class="lesson-card lesson-link" data-file="power-and-energy-in-circuits.html">
+                        <h4>Power and Energy in Circuits</h4>
+                        <p>Calculate electrical power and energy transfers in appliances.</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                    
+                    <a href="the-national-grid.html" class="lesson-card lesson-link" data-file="the-national-grid.html">
+                        <h4>The National Grid</h4>
+                        <p>Understand how electricity is distributed and the role of transformers.</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="topic-section">
+                <h2>6.3 Particle Model of Matter</h2>
+                <div class="lessons-grid">
+                    <a href="density.html" class="lesson-card lesson-link" data-file="density.html">
+                        <h4>Density</h4>
+                        <p>Calculate density and explain differences between states of matter.</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                    
+                    <a href="changes-of-state.html" class="lesson-card lesson-link" data-file="changes-of-state.html">
+                        <h4>Changes of State</h4>
+                        <p>Understand physical changes and energy transfers during state changes.</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                    
+                    <a href="internal-energy-and-latent-heat.html" class="lesson-card lesson-link" data-file="internal-energy-and-latent-heat.html">
+                        <h4>Internal Energy and Latent Heat</h4>
+                        <p>Learn about internal energy, specific heat capacity and latent heat.</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                    
+                    <a href="particle-motion-in-gases.html" class="lesson-card lesson-link" data-file="particle-motion-in-gases.html">
+                        <h4>Particle Motion in Gases</h4>
+                        <p>Relate gas pressure and temperature to particle motion.</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="topic-section">
+                <h2>6.4 Atomic Structure</h2>
+                <div class="lessons-grid">
+                    <a href="atoms-and-isotopes.html" class="lesson-card lesson-link" data-file="atoms-and-isotopes.html">
+                        <h4>Atoms and Isotopes</h4>
+                        <p>Learn atomic structure, atomic number, mass number and isotopes.</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                    
+                    <a href="development-of-the-atomic-model.html" class="lesson-card lesson-link" data-file="development-of-the-atomic-model.html">
+                        <h4>Development of the Atomic Model</h4>
+                        <p>Understand how scientific models of the atom have changed over time.</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                    
+                    <a href="radioactive-decay.html" class="lesson-card lesson-link" data-file="radioactive-decay.html">
+                        <h4>Radioactive Decay</h4>
+                        <p>Learn about alpha, beta and gamma radiation and nuclear equations.</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                    
+                    <a href="half-life.html" class="lesson-card lesson-link" data-file="half-life.html">
+                        <h4>Half-life</h4>
+                        <p>Understand radioactive half-life and calculate decay over time.</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                    
+                    <a href="hazards-of-radiation.html" class="lesson-card lesson-link" data-file="hazards-of-radiation.html">
+                        <h4>Hazards of Radiation</h4>
+                        <p>Compare contamination and irradiation and understand radiation safety.</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="topic-section">
+                <h2>6.5 Forces</h2>
+                
+                <h3>Forces and their interactions</h3>
+                <div class="lessons-grid">
+                    <a href="scalar-and-vector-quantities.html" class="lesson-card lesson-link" data-file="scalar-and-vector-quantities.html">
+                        <h4>Scalar and Vector Quantities</h4>
+                        <p>Distinguish between scalar and vector quantities with examples.</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                    
+                    <a href="contact-and-non-contact-forces.html" class="lesson-card lesson-link" data-file="contact-and-non-contact-forces.html">
+                        <h4>Contact and Non-contact Forces</h4>
+                        <p>Learn about different types of forces and force interactions.</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                    
+                    <a href="gravity-and-weight.html" class="lesson-card lesson-link" data-file="gravity-and-weight.html">
+                        <h4>Gravity and Weight</h4>
+                        <p>Calculate weight and understand gravitational field strength.</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                    
+                    <a href="resultant-forces.html" class="lesson-card lesson-link" data-file="resultant-forces.html">
+                        <h4>Resultant Forces</h4>
+                        <p>Calculate resultant forces and use free body diagrams.</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                </div>
+                
+                <h3>Work done and energy transfer</h3>
+                <div class="lessons-grid">
+                    <a href="work-done.html" class="lesson-card lesson-link" data-file="work-done.html">
+                        <h4>Work Done</h4>
+                        <p>Calculate work done by forces and relate to energy transfers.</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                </div>
+                
+                <h3>Forces and elasticity</h3>
+                <div class="lessons-grid">
+                    <a href="springs-and-hookes-law.html" class="lesson-card lesson-link" data-file="springs-and-hookes-law.html">
+                        <h4>Springs and Hooke's Law</h4>
+                        <p>Investigate force-extension relationships and elastic potential energy.</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                </div>
+                
+                <h3>Forces and motion</h3>
+                <div class="lessons-grid">
+                    <a href="distance-speed-and-velocity.html" class="lesson-card lesson-link" data-file="distance-speed-and-velocity.html">
+                        <h4>Distance, Speed and Velocity</h4>
+                        <p>Calculate speed and interpret distance-time graphs.</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                    
+                    <a href="acceleration.html" class="lesson-card lesson-link" data-file="acceleration.html">
+                        <h4>Acceleration</h4>
+                        <p>Calculate acceleration and interpret velocity-time graphs.</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                    
+                    <a href="newtons-laws-of-motion.html" class="lesson-card lesson-link" data-file="newtons-laws-of-motion.html">
+                        <h4>Newton's Laws of Motion</h4>
+                        <p>Apply Newton's three laws to explain motion.</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                    
+                    <a href="stopping-distances.html" class="lesson-card lesson-link" data-file="stopping-distances.html">
+                        <h4>Stopping Distances</h4>
+                        <p>Understand factors affecting thinking and braking distances.</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                    
+                    <a href="momentum.html" class="lesson-card lesson-link" data-file="momentum.html">
+                        <h4>Momentum (HT only)</h4>
+                        <p>Calculate momentum and apply conservation of momentum.</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="topic-section">
+                <h2>6.6 Waves</h2>
+                <div class="lessons-grid">
+                    <a href="transverse-and-longitudinal-waves.html" class="lesson-card lesson-link" data-file="transverse-and-longitudinal-waves.html">
+                        <h4>Transverse and Longitudinal Waves</h4>
+                        <p>Compare different wave types and describe wave motion.</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                    
+                    <a href="wave-properties.html" class="lesson-card lesson-link" data-file="wave-properties.html">
+                        <h4>Wave Properties</h4>
+                        <p>Calculate wave speed, frequency and wavelength.</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                    
+                    <a href="electromagnetic-waves.html" class="lesson-card lesson-link" data-file="electromagnetic-waves.html">
+                        <h4>Electromagnetic Waves</h4>
+                        <p>Learn about the EM spectrum and properties of EM waves.</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                    
+                    <a href="uses-and-hazards-of-em-waves.html" class="lesson-card lesson-link" data-file="uses-and-hazards-of-em-waves.html">
+                        <h4>Uses and Hazards of EM Waves</h4>
+                        <p>Explore applications and dangers of electromagnetic radiation.</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="topic-section">
+                <h2>6.7 Magnetism and Electromagnetism</h2>
+                <div class="lessons-grid">
+                    <a href="permanent-and-induced-magnetism.html" class="lesson-card lesson-link" data-file="permanent-and-induced-magnetism.html">
+                        <h4>Permanent and Induced Magnetism</h4>
+                        <p>Learn about magnetic poles, fields and the Earth's magnetism.</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                    
+                    <a href="electromagnetism.html" class="lesson-card lesson-link" data-file="electromagnetism.html">
+                        <h4>Electromagnetism</h4>
+                        <p>Understand magnetic effects of currents and solenoids.</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                    
+                    <a href="the-motor-effect.html" class="lesson-card lesson-link" data-file="the-motor-effect.html">
+                        <h4>The Motor Effect (HT only)</h4>
+                        <p>Apply Fleming's left-hand rule and explain electric motors.</p>
+                        <span class="lesson-status status-coming">Coming Soon</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <p><strong>GCSE Physics Revision - AQA Combined Science: Trilogy</strong></p>
+            <p>Interactive lessons with teaching content, flashcards, and quizzes</p>
+            <p style="margin-top: 15px; font-size: 0.9em;">New lessons added regularly</p>
+        </footer>
+    </div>
+
+    <script>
+        async function fileExists(url) {
+            try {
+                const response = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+                if (response.ok) return true;
+
+                const fallback = await fetch(url, { method: 'GET', cache: 'no-store' });
+                return fallback.ok;
+            } catch (error) {
+                return false;
+            }
+        }
+
+        function setAvailable(card) {
+            card.classList.remove('coming-soon');
+            card.classList.add('available');
+            const status = card.querySelector('.lesson-status');
+            status.classList.remove('status-coming');
+            status.classList.add('status-available');
+            status.textContent = '✓ Available';
+            card.removeAttribute('aria-disabled');
+        }
+
+        function setComingSoon(card) {
+            card.classList.remove('available');
+            card.classList.add('coming-soon');
+            const status = card.querySelector('.lesson-status');
+            status.classList.remove('status-available');
+            status.classList.add('status-coming');
+            status.textContent = 'Coming Soon';
+            card.setAttribute('aria-disabled', 'true');
+        }
+
+        async function checkLessons() {
+            const cards = document.querySelectorAll('.lesson-link');
+            let availableCount = 0;
+            const totalCount = cards.length;
+
+            for (const card of cards) {
+                const file = card.dataset.file;
+                const exists = await fileExists(file);
+
+                if (exists) {
+                    setAvailable(card);
+                    availableCount++;
+                } else {
+                    setComingSoon(card);
+                }
+            }
+
+            const percentage = Math.round((availableCount / totalCount) * 100);
+            document.getElementById('progress-text').textContent = `${availableCount} of ${totalCount} lessons available`;
+            document.getElementById('progress-fill').style.width = `${percentage}%`;
+            document.getElementById('progress-fill').textContent = `${percentage}%`;
+        }
+
+        checkLessons();
+    </script>
+</body>
+</html>
