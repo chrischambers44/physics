@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Resources - GCSE Physics</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 10px; }
+        .container { max-width: 900px; margin: 0 auto; background: white; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); overflow: hidden; }
+        header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px 15px; text-align: center; }
+        h1 { font-size: 1.5em; margin-bottom: 10px; word-wrap: break-word; }
+        .subtitle { opacity: 0.9; font-size: 0.95em; }
+        section { padding: 20px 15px; }
+        h2 { color: #667eea; margin-bottom: 20px; font-size: 1.4em; border-bottom: 3px solid #667eea; padding-bottom: 10px; }
+        h3 { color: #764ba2; margin-top: 25px; margin-bottom: 15px; font-size: 1.1em; }
+        @media (min-width: 768px) { body { padding: 20px; } header { padding: 30px; } h1 { font-size: 2em; } .subtitle { font-size: 1.1em; } section { padding: 40px; } h2 { font-size: 1.8em; } h3 { font-size: 1.3em; } }
+        .learning-objective { background: #f0f4ff; border-left: 4px solid #667eea; padding: 15px; margin: 20px 0; border-radius: 5px; }
+        .key-point { background: #fff4e6; border-left: 4px solid #ff9800; padding: 15px; margin: 15px 0; border-radius: 5px; }
+        .example { background: #e8f5e9; border-left: 4px solid #4caf50; padding: 15px; margin: 15px 0; border-radius: 5px; }
+        .renewable { background: #e8f5e9; border-left: 4px solid #4caf50; padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .non-renewable { background: #ffebee; border-left: 4px solid #f44336; padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .flashcards { display: grid; grid-template-columns: 1fr; gap: 15px; margin: 30px 0; }
+        @media (min-width: 600px) { .flashcards { grid-template-columns: repeat(2, 1fr); gap: 20px; } }
+        @media (min-width: 900px) { .flashcards { grid-template-columns: repeat(3, 1fr); } }
+        .flashcard { background: white; border: 2px solid #667eea; border-radius: 10px; padding: 20px 15px; min-height: 120px; cursor: pointer; transition: all 0.3s ease; }
+        .flashcard:hover { transform: translateY(-5px); box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3); }
+        .flashcard.flipped .front { display: none; }
+        .flashcard.flipped .back { display: block; }
+        .flashcard .front { display: block; }
+        .flashcard .back { display: none; }
+        .flashcard-label { font-size: 0.75em; color: #667eea; font-weight: bold; margin-bottom: 10px; }
+        .flashcard-content { font-size: 1em; word-wrap: break-word; }
+        @media (min-width: 768px) { .flashcard { padding: 20px; min-height: 150px; } .flashcard-label { font-size: 0.8em; } .flashcard-content { font-size: 1.1em; } }
+        .quiz-question { background: #f9f9f9; padding: 15px; margin: 15px 0; border-radius: 10px; border: 2px solid #e0e0e0; }
+        .question-text { font-size: 1em; margin-bottom: 15px; font-weight: 500; word-wrap: break-word; }
+        @media (min-width: 768px) { .quiz-question { padding: 25px; margin: 20px 0; } .question-text { font-size: 1.2em; margin-bottom: 20px; } }
+        .options { list-style: none; }
+        .option { background: white; padding: 12px 10px; margin: 8px 0; border-radius: 8px; border: 2px solid #e0e0e0; cursor: pointer; transition: all 0.3s ease; font-size: 0.95em; }
+        @media (min-width: 768px) { .option { padding: 15px; margin: 10px 0; font-size: 1em; } }
+        .option:hover { border-color: #667eea; background: #f0f4ff; }
+        .option.selected { border-color: #667eea; background: #f0f4ff; }
+        .option.correct { border-color: #4caf50; background: #e8f5e9; }
+        .option.incorrect { border-color: #f44336; background: #ffebee; }
+        .submit-btn { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 12px 30px; font-size: 1em; border-radius: 8px; cursor: pointer; margin-top: 15px; width: 100%; }
+        @media (min-width: 768px) { .submit-btn { padding: 15px 40px; font-size: 1.1em; margin-top: 20px; width: auto; } }
+        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4); }
+        .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .quiz-result { margin-top: 15px; padding: 15px; border-radius: 8px; font-size: 1em; text-align: center; display: none; }
+        @media (min-width: 768px) { .quiz-result { margin-top: 20px; padding: 20px; font-size: 1.2em; } }
+        .quiz-result.show { display: block; }
+        .quiz-result.pass { background: #e8f5e9; color: #2e7d32; border: 2px solid #4caf50; }
+        .quiz-result.fail { background: #fff3e0; color: #e65100; border: 2px solid #ff9800; }
+        ul { margin-left: 20px; margin-top: 10px; }
+        @media (min-width: 768px) { ul { margin-left: 30px; } }
+        li { margin: 8px 0; word-wrap: break-word; }
+        p { word-wrap: break-word; overflow-wrap: break-word; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Energy Resources</h1>
+            <p class="subtitle">Renewable and non-renewable energy sources</p>
+        </header>
+        
+        <section id="teach">
+            <h2>Learn</h2>
+            
+            <div class="learning-objective">
+                <strong>Learning Objectives:</strong> Describe different energy resources, distinguish between renewable and non-renewable sources, and understand their environmental impacts.
+            </div>
+            
+            <h3>Main Energy Resources on Earth</h3>
+            
+            <p>The main energy resources available include:</p>
+            <ul>
+                <li>Fossil fuels (coal, oil, and gas)</li>
+                <li>Nuclear fuel</li>
+                <li>Bio-fuel</li>
+                <li>Wind</li>
+                <li>Hydro-electricity</li>
+                <li>Geothermal</li>
+                <li>Tides</li>
+                <li>The Sun (solar)</li>
+                <li>Water waves</li>
+            </ul>
+            
+            <h3>Renewable vs Non-Renewable</h3>
+            
+            <div class="key-point">
+                <strong>Renewable Energy Resource:</strong> One that is being (or can be) replenished as it is used. It won't run out.
+            </div>
+            
+            <div class="renewable">
+                <strong>✓ Renewable Resources:</strong>
+                <ul>
+                    <li>Wind</li>
+                    <li>Solar (Sun)</li>
+                    <li>Hydro-electricity</li>
+                    <li>Tides</li>
+                    <li>Waves</li>
+                    <li>Geothermal</li>
+                    <li>Bio-fuels</li>
+                </ul>
+            </div>
+            
+            <div class="non-renewable">
+                <strong>✗ Non-Renewable Resources:</strong>
+                <ul>
+                    <li>Coal</li>
+                    <li>Oil</li>
+                    <li>Natural gas</li>
+                    <li>Nuclear fuel (uranium, plutonium)</li>
+                </ul>
+                <p style="margin-top: 10px;"><em>These will eventually run out. They are being used up faster than they are being formed.</em></p>
+            </div>
+            
+            <h3>Uses of Energy Resources</h3>
+            
+            <div class="example">
+                <strong>Transport:</strong>
+                <ul>
+                    <li>Petrol/diesel (from oil) - cars, lorries, planes</li>
+                    <li>Electricity - electric cars, trains</li>
+                    <li>Bio-fuels - some cars and buses</li>
+                </ul>
+            </div>
+            
+            <div class="example">
+                <strong>Electricity Generation:</strong>
+                <ul>
+                    <li>Fossil fuels - coal, gas power stations</li>
+                    <li>Nuclear - nuclear power stations</li>
+                    <li>Renewable - wind turbines, solar panels, hydro-electric dams</li>
+                </ul>
+            </div>
+            
+            <div class="example">
+                <strong>Heating:</strong>
+                <ul>
+                    <li>Gas - central heating in homes</li>
+                    <li>Electricity - electric heaters</li>
+                    <li>Wood/bio-fuel - stoves and fires</li>
+                    <li>Solar - solar thermal panels for hot water</li>
+                </ul>
+            </div>
+            
+            <h3>Reliability</h3>
+            
+            <div class="key-point">
+                <strong>Reliable sources:</strong> Available all the time when needed
+                <ul>
+                    <li>Fossil fuels - can be burned whenever needed</li>
+                    <li>Nuclear - runs continuously</li>
+                    <li>Bio-fuels - can be stored and burned when needed</li>
+                </ul>
+            </div>
+            
+            <div class="key-point">
+                <strong>Less reliable sources:</strong> Depend on conditions
+                <ul>
+                    <li>Wind - only when it's windy</li>
+                    <li>Solar - only during daytime and when sunny</li>
+                    <li>Waves - variable with weather</li>
+                    <li>Tides - predictable but only at certain times</li>
+                </ul>
+            </div>
+            
+            <h3>Environmental Impact</h3>
+            
+            <div class="non-renewable">
+                <strong>Fossil Fuels:</strong>
+                <ul>
+                    <li>Release CO₂ (contributes to climate change)</li>
+                    <li>Release sulfur dioxide (causes acid rain)</li>
+                    <li>Particulates cause air pollution</li>
+                    <li>Oil spills damage ecosystems</li>
+                </ul>
+            </div>
+            
+            <div class="non-renewable">
+                <strong>Nuclear:</strong>
+                <ul>
+                    <li>No CO₂ emissions during operation</li>
+                    <li>Produces radioactive waste (difficult to dispose safely)</li>
+                    <li>Risk of accidents (though rare)</li>
+                </ul>
+            </div>
+            
+            <div class="renewable">
+                <strong>Renewable Sources:</strong>
+                <ul>
+                    <li>Wind turbines - noise, visual impact, harm to birds</li>
+                    <li>Hydro-electric - flooding of valleys, affects habitats</li>
+                    <li>Solar panels - lots of space needed, visual impact</li>
+                    <li>Generally much lower environmental impact than fossil fuels</li>
+                </ul>
+            </div>
+            
+            <h3>Trends in Energy Use</h3>
+            
+            <p>Patterns and trends include:</p>
+            <ul>
+                <li>Global energy demand is increasing</li>
+                <li>Use of renewable energy is growing</li>
+                <li>Coal use is declining in many countries</li>
+                <li>Natural gas use increasing as "bridge" fuel</li>
+                <li>More electric vehicles reducing oil use for transport</li>
+            </ul>
+            
+            <div class="key-point">
+                <strong>Science vs Policy:</strong> Science can identify environmental issues from energy use, but cannot always solve them alone. Political, social, ethical, and economic factors also affect decisions about which energy sources to use.
+            </div>
+        </section>
+        
+        <section id="flashcards">
+            <h2>Test Your Understanding - Flashcards</h2>
+            <p style="margin-bottom: 20px; color: #666;">Click each card to reveal the answer</p>
+            
+            <div class="flashcards">
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="front">
+                        <div class="flashcard-label">QUESTION</div>
+                        <div class="flashcard-content">What is a renewable energy resource?</div>
+                    </div>
+                    <div class="back">
+                        <div class="flashcard-label">ANSWER</div>
+                        <div class="flashcard-content">One that is being (or can be) replenished as it is used - it won't run out</div>
+                    </div>
+                </div>
+                
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="front">
+                        <div class="flashcard-label">QUESTION</div>
+                        <div class="flashcard-content">Name three fossil fuels</div>
+                    </div>
+                    <div class="back">
+                        <div class="flashcard-label">ANSWER</div>
+                        <div class="flashcard-content">Coal, oil (petroleum), and natural gas</div>
+                    </div>
+                </div>
+                
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="front">
+                        <div class="flashcard-label">QUESTION</div>
+                        <div class="flashcard-content">Are fossil fuels renewable or non-renewable?</div>
+                    </div>
+                    <div class="back">
+                        <div class="flashcard-label">ANSWER</div>
+                        <div class="flashcard-content">Non-renewable - they will eventually run out</div>
+                    </div>
+                </div>
+                
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="front">
+                        <div class="flashcard-label">QUESTION</div>
+                        <div class="flashcard-content">Why is wind energy less reliable than gas?</div>
+                    </div>
+                    <div class="back">
+                        <div class="flashcard-label">ANSWER</div>
+                        <div class="flashcard-content">Wind turbines only work when it's windy. Gas can be burned whenever energy is needed.</div>
+                    </div>
+                </div>
+                
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="front">
+                        <div class="flashcard-label">QUESTION</div>
+                        <div class="flashcard-content">What environmental problem do fossil fuels cause?</div>
+                    </div>
+                    <div class="back">
+                        <div class="flashcard-label">ANSWER</div>
+                        <div class="flashcard-content">They release CO₂ which contributes to climate change, and cause air pollution</div>
+                    </div>
+                </div>
+                
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="front">
+                        <div class="flashcard-label">QUESTION</div>
+                        <div class="flashcard-content">Name three ways energy resources are used</div>
+                    </div>
+                    <div class="back">
+                        <div class="flashcard-label">ANSWER</div>
+                        <div class="flashcard-content">Transport, electricity generation, and heating</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="quiz">
+            <h2>Quiz - Test Your Knowledge</h2>
+            
+            <div class="quiz-question">
+                <div class="question-text">1. Which of these is a renewable energy resource?</div>
+                <ul class="options" data-question="1" data-answer="c">
+                    <li class="option" data-option="a">Coal</li>
+                    <li class="option" data-option="b">Oil</li>
+                    <li class="option" data-option="c">Wind</li>
+                    <li class="option" data-option="d">Natural gas</li>
+                </ul>
+            </div>
+            
+            <div class="quiz-question">
+                <div class="question-text">2. What is the main environmental problem with burning fossil fuels?</div>
+                <ul class="options" data-question="2" data-answer="b">
+                    <li class="option" data-option="a">They are too expensive</li>
+                    <li class="option" data-option="b">They release CO₂, contributing to climate change</li>
+                    <li class="option" data-option="c">They are unreliable</li>
+                    <li class="option" data-option="d">They produce nuclear waste</li>
+                </ul>
+            </div>
+            
+            <div class="quiz-question">
+                <div class="question-text">3. Which energy source is the MOST reliable?</div>
+                <ul class="options" data-question="3" data-answer="d">
+                    <li class="option" data-option="a">Wind</li>
+                    <li class="option" data-option="b">Solar</li>
+                    <li class="option" data-option="c">Waves</li>
+                    <li class="option" data-option="d">Natural gas</li>
+                </ul>
+            </div>
+            
+            <div class="quiz-question">
+                <div class="question-text">4. Which of these is NOT a use of energy resources?</div>
+                <ul class="options" data-question="4" data-answer="d">
+                    <li class="option" data-option="a">Transport</li>
+                    <li class="option" data-option="b">Electricity generation</li>
+                    <li class="option" data-option="c">Heating</li>
+                    <li class="option" data-option="d">Photosynthesis</li>
+                </ul>
+            </div>
+            
+            <div class="quiz-question">
+                <div class="question-text">5. What is a disadvantage of nuclear power?</div>
+                <ul class="options" data-question="5" data-answer="a">
+                    <li class="option" data-option="a">Produces radioactive waste that's hard to dispose of</li>
+                    <li class="option" data-option="b">Releases lots of CO₂</li>
+                    <li class="option" data-option="c">Only works when it's sunny</li>
+                    <li class="option" data-option="d">Uses up fossil fuels</li>
+                </ul>
+            </div>
+            
+            <button class="submit-btn" onclick="checkAnswers()">Submit Answers</button>
+            
+            <div id="quiz-result" class="quiz-result"></div>
+        </section>
+    </div>
+    
+    <script>
+        let selectedAnswers = {};
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', function() {
+                const questionNum = this.parentElement.dataset.question;
+                const selectedOption = this.dataset.option;
+                this.parentElement.querySelectorAll('.option').forEach(opt => { opt.classList.remove('selected'); });
+                this.classList.add('selected');
+                selectedAnswers[questionNum] = selectedOption;
+            });
+        });
+        
+        function checkAnswers() {
+            let correct = 0;
+            let total = document.querySelectorAll('.options').length;
+            document.querySelectorAll('.options').forEach(optionList => {
+                const questionNum = optionList.dataset.question;
+                const correctAnswer = optionList.dataset.answer;
+                const userAnswer = selectedAnswers[questionNum];
+                optionList.querySelectorAll('.option').forEach(option => {
+                    const optionLetter = option.dataset.option;
+                    if (optionLetter === correctAnswer) { option.classList.add('correct'); }
+                    if (userAnswer && optionLetter === userAnswer && optionLetter !== correctAnswer) {
+                        option.classList.add('incorrect');
+                    }
+                });
+                if (userAnswer === correctAnswer) { correct++; }
+            });
+            const resultDiv = document.getElementById('quiz-result');
+            const percentage = Math.round((correct / total) * 100);
+            resultDiv.classList.add('show');
+            if (percentage >= 70) {
+                resultDiv.classList.remove('fail');
+                resultDiv.classList.add('pass');
+                resultDiv.innerHTML = `🎉 Well done! You scored ${correct}/${total} (${percentage}%)`;
+            } else {
+                resultDiv.classList.remove('pass');
+                resultDiv.classList.add('fail');
+                resultDiv.innerHTML = `📚 You scored ${correct}/${total} (${percentage}%). Review the material and try again!`;
+            }
+            document.querySelector('.submit-btn').disabled = true;
+        }
+    </script>
+</body>
+</html>
