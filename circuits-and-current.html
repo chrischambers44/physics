@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circuits and Current - GCSE Physics</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 10px; }
+        .container { max-width: 900px; margin: 0 auto; background: white; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); overflow: hidden; }
+        header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px 15px; text-align: center; }
+        h1 { font-size: 1.5em; margin-bottom: 10px; word-wrap: break-word; }
+        .subtitle { opacity: 0.9; font-size: 0.95em; }
+        section { padding: 20px 15px; }
+        h2 { color: #667eea; margin-bottom: 20px; font-size: 1.4em; border-bottom: 3px solid #667eea; padding-bottom: 10px; }
+        h3 { color: #764ba2; margin-top: 25px; margin-bottom: 15px; font-size: 1.1em; }
+        @media (min-width: 768px) { body { padding: 20px; } header { padding: 30px; } h1 { font-size: 2em; } .subtitle { font-size: 1.1em; } section { padding: 40px; } h2 { font-size: 1.8em; } h3 { font-size: 1.3em; } }
+        .learning-objective { background: #f0f4ff; border-left: 4px solid #667eea; padding: 15px; margin: 20px 0; border-radius: 5px; }
+        .key-point { background: #fff4e6; border-left: 4px solid #ff9800; padding: 15px; margin: 15px 0; border-radius: 5px; }
+        .example { background: #e8f5e9; border-left: 4px solid #4caf50; padding: 15px; margin: 15px 0; border-radius: 5px; }
+        .formula-box { background: #f5f5f5; border: 2px solid #667eea; padding: 20px; margin: 20px 0; border-radius: 8px; text-align: center; }
+        .formula { font-size: 1.3em; font-weight: bold; color: #667eea; margin: 10px 0; }
+        .formula-key { font-size: 0.9em; color: #666; margin-top: 10px; }
+        .symbols { background: #f9f9f9; padding: 15px; margin: 15px 0; border-radius: 8px; border: 2px solid #e0e0e0; }
+        .symbol-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 10px; }
+        @media (min-width: 600px) { .symbol-grid { grid-template-columns: repeat(3, 1fr); } }
+        .symbol-item { text-align: center; padding: 10px; background: white; border-radius: 5px; }
+        .symbol-image { font-size: 2em; margin-bottom: 5px; }
+        .flashcards { display: grid; grid-template-columns: 1fr; gap: 15px; margin: 30px 0; }
+        @media (min-width: 600px) { .flashcards { grid-template-columns: repeat(2, 1fr); gap: 20px; } }
+        @media (min-width: 900px) { .flashcards { grid-template-columns: repeat(3, 1fr); } }
+        .flashcard { background: white; border: 2px solid #667eea; border-radius: 10px; padding: 20px 15px; min-height: 120px; cursor: pointer; transition: all 0.3s ease; }
+        .flashcard:hover { transform: translateY(-5px); box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3); }
+        .flashcard.flipped .front { display: none; }
+        .flashcard.flipped .back { display: block; }
+        .flashcard .front { display: block; }
+        .flashcard .back { display: none; }
+        .flashcard-label { font-size: 0.75em; color: #667eea; font-weight: bold; margin-bottom: 10px; }
+        .flashcard-content { font-size: 1em; word-wrap: break-word; }
+        @media (min-width: 768px) { .flashcard { padding: 20px; min-height: 150px; } .flashcard-label { font-size: 0.8em; } .flashcard-content { font-size: 1.1em; } }
+        .quiz-question { background: #f9f9f9; padding: 15px; margin: 15px 0; border-radius: 10px; border: 2px solid #e0e0e0; }
+        .question-text { font-size: 1em; margin-bottom: 15px; font-weight: 500; word-wrap: break-word; }
+        @media (min-width: 768px) { .quiz-question { padding: 25px; margin: 20px 0; } .question-text { font-size: 1.2em; margin-bottom: 20px; } }
+        .options { list-style: none; }
+        .option { background: white; padding: 12px 10px; margin: 8px 0; border-radius: 8px; border: 2px solid #e0e0e0; cursor: pointer; transition: all 0.3s ease; font-size: 0.95em; }
+        @media (min-width: 768px) { .option { padding: 15px; margin: 10px 0; font-size: 1em; } }
+        .option:hover { border-color: #667eea; background: #f0f4ff; }
+        .option.selected { border-color: #667eea; background: #f0f4ff; }
+        .option.correct { border-color: #4caf50; background: #e8f5e9; }
+        .option.incorrect { border-color: #f44336; background: #ffebee; }
+        .submit-btn { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 12px 30px; font-size: 1em; border-radius: 8px; cursor: pointer; margin-top: 15px; width: 100%; }
+        @media (min-width: 768px) { .submit-btn { padding: 15px 40px; font-size: 1.1em; margin-top: 20px; width: auto; } }
+        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4); }
+        .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .quiz-result { margin-top: 15px; padding: 15px; border-radius: 8px; font-size: 1em; text-align: center; display: none; }
+        @media (min-width: 768px) { .quiz-result { margin-top: 20px; padding: 20px; font-size: 1.2em; } }
+        .quiz-result.show { display: block; }
+        .quiz-result.pass { background: #e8f5e9; color: #2e7d32; border: 2px solid #4caf50; }
+        .quiz-result.fail { background: #fff3e0; color: #e65100; border: 2px solid #ff9800; }
+        ul { margin-left: 20px; margin-top: 10px; }
+        @media (min-width: 768px) { ul { margin-left: 30px; } }
+        li { margin: 8px 0; word-wrap: break-word; }
+        p { word-wrap: break-word; overflow-wrap: break-word; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Circuits and Current</h1>
+            <p class="subtitle">Understanding electric circuits and charge flow</p>
+        </header>
+        
+        <section id="teach">
+            <h2>Learn</h2>
+            
+            <div class="learning-objective">
+                <strong>Learning Objectives:</strong> Draw circuit diagrams using standard symbols, understand electric current and charge flow, and calculate charge using Q = I t.
+            </div>
+            
+            <h3>What is an Electric Circuit?</h3>
+            
+            <p>An electric circuit is a closed loop that allows electric charge to flow. For current to flow, the circuit must be complete and include a source of potential difference (like a battery).</p>
+            
+            <div class="key-point">
+                <strong>Key Requirement:</strong> For electrical charge to flow through a closed circuit, the circuit must include a source of potential difference (voltage).
+            </div>
+            
+            <h3>Standard Circuit Symbols</h3>
+            
+            <p>We use standard symbols to draw circuit diagrams. Here are the most important ones you need to know:</p>
+            
+            <div class="symbols">
+                <div class="symbol-grid">
+                    <div class="symbol-item">
+                        <div class="symbol-image">—||—</div>
+                        <div>Cell</div>
+                    </div>
+                    <div class="symbol-item">
+                        <div class="symbol-image">—||||—</div>
+                        <div>Battery</div>
+                    </div>
+                    <div class="symbol-item">
+                        <div class="symbol-image">—/—</div>
+                        <div>Switch (open)</div>
+                    </div>
+                    <div class="symbol-item">
+                        <div class="symbol-image">—⚡—</div>
+                        <div>Lamp/Bulb</div>
+                    </div>
+                    <div class="symbol-item">
+                        <div class="symbol-image">—▭—</div>
+                        <div>Resistor</div>
+                    </div>
+                    <div class="symbol-item">
+                        <div class="symbol-image">—⊗—</div>
+                        <div>Variable Resistor</div>
+                    </div>
+                    <div class="symbol-item">
+                        <div class="symbol-image">—A—</div>
+                        <div>Ammeter</div>
+                    </div>
+                    <div class="symbol-item">
+                        <div class="symbol-image">—V—</div>
+                        <div>Voltmeter</div>
+                    </div>
+                    <div class="symbol-item">
+                        <div class="symbol-image">—▷|—</div>
+                        <div>Diode</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="key-point">
+                <strong>Remember:</strong> You need to be able to draw AND interpret circuit diagrams using these standard symbols.
+            </div>
+            
+            <h3>What is Electric Current?</h3>
+            
+            <p>Electric current is the flow of electrical charge. When a circuit is complete, electrons flow around it, carrying charge and energy.</p>
+            
+            <div class="key-point">
+                <strong>Definition:</strong> Electric current is a flow of electrical charge. The size of the electric current is the rate of flow of electrical charge.
+            </div>
+            
+            <p>Current is measured in <strong>amperes (A)</strong>, often shortened to "amps". An ammeter is used to measure current and must be connected in series (in line with) the component.</p>
+            
+            <h3>Charge Flow</h3>
+            
+            <p>The amount of charge that flows depends on the current and how long it flows for.</p>
+            
+            <div class="formula-box">
+                <div class="formula">Q = I t</div>
+                <div class="formula-key">
+                    Q = charge flow (coulombs, C)<br>
+                    I = current (amperes, A)<br>
+                    t = time (seconds, s)
+                </div>
+            </div>
+            
+            <div class="key-point">
+                <strong>Remember:</strong> 1 coulomb is the amount of charge that flows when a current of 1 ampere flows for 1 second.
+            </div>
+            
+            <h3>Worked Examples</h3>
+            
+            <div class="example">
+                <strong>Example 1:</strong> A current of 2 A flows through a circuit for 30 seconds. How much charge flows?
+                <p style="margin-top: 10px;">
+                    <strong>Solution:</strong><br>
+                    Q = I t<br>
+                    Q = 2 × 30<br>
+                    Q = 60 C
+                </p>
+            </div>
+            
+            <div class="example">
+                <strong>Example 2:</strong> 450 C of charge flows through a lamp in 5 minutes. What is the current?
+                <p style="margin-top: 10px;">
+                    <strong>Solution:</strong><br>
+                    First convert 5 minutes to seconds: 5 × 60 = 300 s<br>
+                    <br>
+                    Q = I t, so I = Q/t<br>
+                    I = 450 ÷ 300<br>
+                    I = 1.5 A
+                </p>
+            </div>
+            
+            <div class="example">
+                <strong>Example 3:</strong> How long does it take for 120 C of charge to flow if the current is 0.5 A?
+                <p style="margin-top: 10px;">
+                    <strong>Solution:</strong><br>
+                    Q = I t, so t = Q/I<br>
+                    t = 120 ÷ 0.5<br>
+                    t = 240 s (or 4 minutes)
+                </p>
+            </div>
+            
+            <h3>Current in a Series Circuit</h3>
+            
+            <div class="key-point">
+                <strong>Important Rule:</strong> A current has the same value at any point in a single closed loop (series circuit).
+            </div>
+            
+            <p>This means if you measure the current at different points in a series circuit, you'll get the same reading. The current doesn't "get used up" as it goes around the circuit.</p>
+            
+            <div class="example">
+                <strong>Why?</strong>
+                <p>Think of it like water flowing through a pipe. The amount of water passing any point per second is the same all the way around. Charge works the same way - the same amount passes every point each second.</p>
+            </div>
+        </section>
+        
+        <section id="flashcards">
+            <h2>Test Your Understanding - Flashcards</h2>
+            <p style="margin-bottom: 20px; color: #666;">Click each card to reveal the answer</p>
+            
+            <div class="flashcards">
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="front">
+                        <div class="flashcard-label">QUESTION</div>
+                        <div class="flashcard-content">What is electric current?</div>
+                    </div>
+                    <div class="back">
+                        <div class="flashcard-label">ANSWER</div>
+                        <div class="flashcard-content">A flow of electrical charge (the rate at which charge flows)</div>
+                    </div>
+                </div>
+                
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="front">
+                        <div class="flashcard-label">QUESTION</div>
+                        <div class="flashcard-content">What is the unit of current?</div>
+                    </div>
+                    <div class="back">
+                        <div class="flashcard-label">ANSWER</div>
+                        <div class="flashcard-content">Ampere (A) - also called "amps"</div>
+                    </div>
+                </div>
+                
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="front">
+                        <div class="flashcard-label">QUESTION</div>
+                        <div class="flashcard-content">What is the formula linking charge, current and time?</div>
+                    </div>
+                    <div class="back">
+                        <div class="flashcard-label">ANSWER</div>
+                        <div class="flashcard-content">Q = I t (charge = current × time)</div>
+                    </div>
+                </div>
+                
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="front">
+                        <div class="flashcard-label">QUESTION</div>
+                        <div class="flashcard-content">What is the unit of charge?</div>
+                    </div>
+                    <div class="back">
+                        <div class="flashcard-label">ANSWER</div>
+                        <div class="flashcard-content">Coulomb (C)</div>
+                    </div>
+                </div>
+                
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="front">
+                        <div class="flashcard-label">QUESTION</div>
+                        <div class="flashcard-content">What must a circuit have for current to flow?</div>
+                    </div>
+                    <div class="back">
+                        <div class="flashcard-label">ANSWER</div>
+                        <div class="flashcard-content">It must be a closed loop and include a source of potential difference (like a battery)</div>
+                    </div>
+                </div>
+                
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="front">
+                        <div class="flashcard-label">QUESTION</div>
+                        <div class="flashcard-content">In a series circuit, is current the same at all points?</div>
+                    </div>
+                    <div class="back">
+                        <div class="flashcard-label">ANSWER</div>
+                        <div class="flashcard-content">Yes - current is the same at any point in a single closed loop</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="quiz">
+            <h2>Quiz - Test Your Knowledge</h2>
+            
+            <div class="quiz-question">
+                <div class="question-text">1. A current of 3 A flows for 10 seconds. How much charge flows?</div>
+                <ul class="options" data-question="1" data-answer="b">
+                    <li class="option" data-option="a">3 C</li>
+                    <li class="option" data-option="b">30 C</li>
+                    <li class="option" data-option="c">13 C</li>
+                    <li class="option" data-option="d">0.3 C</li>
+                </ul>
+            </div>
+            
+            <div class="quiz-question">
+                <div class="question-text">2. What is electric current?</div>
+                <ul class="options" data-question="2" data-answer="c">
+                    <li class="option" data-option="a">The amount of charge in a circuit</li>
+                    <li class="option" data-option="b">The energy in a circuit</li>
+                    <li class="option" data-option="c">The rate of flow of electrical charge</li>
+                    <li class="option" data-option="d">The resistance of a wire</li>
+                </ul>
+            </div>
+            
+            <div class="quiz-question">
+                <div class="question-text">3. Which instrument measures current?</div>
+                <ul class="options" data-question="3" data-answer="a">
+                    <li class="option" data-option="a">Ammeter</li>
+                    <li class="option" data-option="b">Voltmeter</li>
+                    <li class="option" data-option="c">Thermometer</li>
+                    <li class="option" data-option="d">Ohmmeter</li>
+                </ul>
+            </div>
+            
+            <div class="quiz-question">
+                <div class="question-text">4. 600 C of charge flows through a circuit in 2 minutes. What is the current?</div>
+                <ul class="options" data-question="4" data-answer="d">
+                    <li class="option" data-option="a">300 A</li>
+                    <li class="option" data-option="b">1200 A</li>
+                    <li class="option" data-option="c">10 A</li>
+                    <li class="option" data-option="d">5 A</li>
+                </ul>
+            </div>
+            
+            <div class="quiz-question">
+                <div class="question-text">5. In a series circuit with one loop, what happens to the current at different points?</div>
+                <ul class="options" data-question="5" data-answer="b">
+                    <li class="option" data-option="a">It decreases as you go around</li>
+                    <li class="option" data-option="b">It stays the same at all points</li>
+                    <li class="option" data-option="c">It increases as you go around</li>
+                    <li class="option" data-option="d">It varies randomly</li>
+                </ul>
+            </div>
+            
+            <button class="submit-btn" onclick="checkAnswers()">Submit Answers</button>
+            
+            <div id="quiz-result" class="quiz-result"></div>
+        </section>
+    </div>
+    
+    <script>
+        let selectedAnswers = {};
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', function() {
+                const questionNum = this.parentElement.dataset.question;
+                const selectedOption = this.dataset.option;
+                this.parentElement.querySelectorAll('.option').forEach(opt => { opt.classList.remove('selected'); });
+                this.classList.add('selected');
+                selectedAnswers[questionNum] = selectedOption;
+            });
+        });
+        
+        function checkAnswers() {
+            let correct = 0;
+            let total = document.querySelectorAll('.options').length;
+            document.querySelectorAll('.options').forEach(optionList => {
+                const questionNum = optionList.dataset.question;
+                const correctAnswer = optionList.dataset.answer;
+                const userAnswer = selectedAnswers[questionNum];
+                optionList.querySelectorAll('.option').forEach(option => {
+                    const optionLetter = option.dataset.option;
+                    if (optionLetter === correctAnswer) { option.classList.add('correct'); }
+                    if (userAnswer && optionLetter === userAnswer && optionLetter !== correctAnswer) {
+                        option.classList.add('incorrect');
+                    }
+                });
+                if (userAnswer === correctAnswer) { correct++; }
+            });
+            const resultDiv = document.getElementById('quiz-result');
+            const percentage = Math.round((correct / total) * 100);
+            resultDiv.classList.add('show');
+            if (percentage >= 70) {
+                resultDiv.classList.remove('fail');
+                resultDiv.classList.add('pass');
+                resultDiv.innerHTML = `🎉 Well done! You scored ${correct}/${total} (${percentage}%)`;
+            } else {
+                resultDiv.classList.remove('pass');
+                resultDiv.classList.add('fail');
+                resultDiv.innerHTML = `📚 You scored ${correct}/${total} (${percentage}%). Review the material and try again!`;
+            }
+            document.querySelector('.submit-btn').disabled = true;
+        }
+    </script>
+</body>
+</html>
