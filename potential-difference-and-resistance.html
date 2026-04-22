@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Potential Difference and Resistance - GCSE Physics</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 10px; }
+        .container { max-width: 900px; margin: 0 auto; background: white; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); overflow: hidden; }
+        header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px 15px; text-align: center; }
+        h1 { font-size: 1.5em; margin-bottom: 10px; word-wrap: break-word; }
+        .subtitle { opacity: 0.9; font-size: 0.95em; }
+        section { padding: 20px 15px; }
+        h2 { color: #667eea; margin-bottom: 20px; font-size: 1.4em; border-bottom: 3px solid #667eea; padding-bottom: 10px; }
+        h3 { color: #764ba2; margin-top: 25px; margin-bottom: 15px; font-size: 1.1em; }
+        @media (min-width: 768px) { body { padding: 20px; } header { padding: 30px; } h1 { font-size: 2em; } .subtitle { font-size: 1.1em; } section { padding: 40px; } h2 { font-size: 1.8em; } h3 { font-size: 1.3em; } }
+        .learning-objective { background: #f0f4ff; border-left: 4px solid #667eea; padding: 15px; margin: 20px 0; border-radius: 5px; }
+        .key-point { background: #fff4e6; border-left: 4px solid #ff9800; padding: 15px; margin: 15px 0; border-radius: 5px; }
+        .example { background: #e8f5e9; border-left: 4px solid #4caf50; padding: 15px; margin: 15px 0; border-radius: 5px; }
+        .formula-box { background: #f5f5f5; border: 2px solid #667eea; padding: 20px; margin: 20px 0; border-radius: 8px; text-align: center; }
+        .formula { font-size: 1.3em; font-weight: bold; color: #667eea; margin: 10px 0; }
+        .formula-key { font-size: 0.9em; color: #666; margin-top: 10px; }
+        .flashcards { display: grid; grid-template-columns: 1fr; gap: 15px; margin: 30px 0; }
+        @media (min-width: 600px) { .flashcards { grid-template-columns: repeat(2, 1fr); gap: 20px; } }
+        @media (min-width: 900px) { .flashcards { grid-template-columns: repeat(3, 1fr); } }
+        .flashcard { background: white; border: 2px solid #667eea; border-radius: 10px; padding: 20px 15px; min-height: 120px; cursor: pointer; transition: all 0.3s ease; }
+        .flashcard:hover { transform: translateY(-5px); box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3); }
+        .flashcard.flipped .front { display: none; }
+        .flashcard.flipped .back { display: block; }
+        .flashcard .front { display: block; }
+        .flashcard .back { display: none; }
+        .flashcard-label { font-size: 0.75em; color: #667eea; font-weight: bold; margin-bottom: 10px; }
+        .flashcard-content { font-size: 1em; word-wrap: break-word; }
+        @media (min-width: 768px) { .flashcard { padding: 20px; min-height: 150px; } .flashcard-label { font-size: 0.8em; } .flashcard-content { font-size: 1.1em; } }
+        .quiz-question { background: #f9f9f9; padding: 15px; margin: 15px 0; border-radius: 10px; border: 2px solid #e0e0e0; }
+        .question-text { font-size: 1em; margin-bottom: 15px; font-weight: 500; word-wrap: break-word; }
+        @media (min-width: 768px) { .quiz-question { padding: 25px; margin: 20px 0; } .question-text { font-size: 1.2em; margin-bottom: 20px; } }
+        .options { list-style: none; }
+        .option { background: white; padding: 12px 10px; margin: 8px 0; border-radius: 8px; border: 2px solid #e0e0e0; cursor: pointer; transition: all 0.3s ease; font-size: 0.95em; }
+        @media (min-width: 768px) { .option { padding: 15px; margin: 10px 0; font-size: 1em; } }
+        .option:hover { border-color: #667eea; background: #f0f4ff; }
+        .option.selected { border-color: #667eea; background: #f0f4ff; }
+        .option.correct { border-color: #4caf50; background: #e8f5e9; }
+        .option.incorrect { border-color: #f44336; background: #ffebee; }
+        .submit-btn { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 12px 30px; font-size: 1em; border-radius: 8px; cursor: pointer; margin-top: 15px; width: 100%; }
+        @media (min-width: 768px) { .submit-btn { padding: 15px 40px; font-size: 1.1em; margin-top: 20px; width: auto; } }
+        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4); }
+        .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .quiz-result { margin-top: 15px; padding: 15px; border-radius: 8px; font-size: 1em; text-align: center; display: none; }
+        @media (min-width: 768px) { .quiz-result { margin-top: 20px; padding: 20px; font-size: 1.2em; } }
+        .quiz-result.show { display: block; }
+        .quiz-result.pass { background: #e8f5e9; color: #2e7d32; border: 2px solid #4caf50; }
+        .quiz-result.fail { background: #fff3e0; color: #e65100; border: 2px solid #ff9800; }
+        ul { margin-left: 20px; margin-top: 10px; }
+        @media (min-width: 768px) { ul { margin-left: 30px; } }
+        li { margin: 8px 0; word-wrap: break-word; }
+        p { word-wrap: break-word; overflow-wrap: break-word; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Potential Difference and Resistance</h1>
+            <p class="subtitle">Understanding voltage, resistance, and Ohm's Law</p>
+        </header>
+        
+        <section id="teach">
+            <h2>Learn</h2>
+            
+            <div class="learning-objective">
+                <strong>Learning Objectives:</strong> Understand potential difference (voltage) and resistance, apply Ohm's Law, and calculate current, voltage and resistance in circuits.
+            </div>
+            
+            <h3>What is Potential Difference?</h3>
+            
+            <p>Potential difference (also called voltage) is the energy transferred per unit charge passed.</p>
+            
+            <div class="key-point">
+                <strong>Definition:</strong> Potential difference across a component is the work done (energy transferred) per coulomb of charge that passes through the component.
+            </div>
+            
+            <div class="formula-box">
+                <div class="formula">V = W/Q</div>
+                <div class="formula-key">
+                    V = potential difference (volts, V)<br>
+                    W = work done / energy transferred (joules, J)<br>
+                    Q = charge (coulombs, C)
+                </div>
+            </div>
+            
+            <p>Potential difference is measured in <strong>volts (V)</strong> using a voltmeter. A voltmeter must be connected in parallel (across) the component.</p>
+            
+            <div class="key-point">
+                <strong>Remember:</strong> 1 volt means 1 joule of energy is transferred per coulomb of charge.
+            </div>
+            
+            <h3>What is Resistance?</h3>
+            
+            <p>Resistance is a measure of how difficult it is for current to flow through a component. The higher the resistance, the harder it is for current to flow.</p>
+            
+            <div class="key-point">
+                <strong>Definition:</strong> The resistance of a component is a measure of the opposition to current flow.
+            </div>
+            
+            <p>Resistance is measured in <strong>ohms (Ω)</strong>. The symbol for an ohm is the Greek letter omega.</p>
+            
+            <h3>Ohm's Law</h3>
+            
+            <p>Ohm's Law describes the relationship between voltage, current, and resistance in a circuit.</p>
+            
+            <div class="formula-box">
+                <div class="formula">V = I R</div>
+                <div class="formula-key">
+                    V = potential difference (volts, V)<br>
+                    I = current (amperes, A)<br>
+                    R = resistance (ohms, Ω)
+                </div>
+            </div>
+            
+            <div class="key-point">
+                <strong>Remember the Triangle:</strong> Cover up the one you want to find:
+                <ul style="margin-top: 10px;">
+                    <li>V = I × R (voltage = current × resistance)</li>
+                    <li>I = V / R (current = voltage ÷ resistance)</li>
+                    <li>R = V / I (resistance = voltage ÷ current)</li>
+                </ul>
+            </div>
+            
+            <h3>Worked Examples</h3>
+            
+            <div class="example">
+                <strong>Example 1:</strong> A lamp has a resistance of 6 Ω and a current of 2 A flowing through it. Calculate the potential difference across the lamp.
+                <p style="margin-top: 10px;">
+                    <strong>Solution:</strong><br>
+                    V = I R<br>
+                    V = 2 × 6<br>
+                    V = 12 V
+                </p>
+            </div>
+            
+            <div class="example">
+                <strong>Example 2:</strong> A 9 V battery is connected to a resistor with resistance 3 Ω. Calculate the current.
+                <p style="margin-top: 10px;">
+                    <strong>Solution:</strong><br>
+                    V = I R, so I = V/R<br>
+                    I = 9 ÷ 3<br>
+                    I = 3 A
+                </p>
+            </div>
+            
+            <div class="example">
+                <strong>Example 3:</strong> A component has a potential difference of 12 V across it and a current of 0.5 A flowing through it. Calculate its resistance.
+                <p style="margin-top: 10px;">
+                    <strong>Solution:</strong><br>
+                    V = I R, so R = V/I<br>
+                    R = 12 ÷ 0.5<br>
+                    R = 24 Ω
+                </p>
+            </div>
+            
+            <div class="example">
+                <strong>Example 4:</strong> 30 J of energy is transferred when 5 C of charge passes through a lamp. Calculate the potential difference across the lamp.
+                <p style="margin-top: 10px;">
+                    <strong>Solution:</strong><br>
+                    V = W/Q<br>
+                    V = 30 ÷ 5<br>
+                    V = 6 V
+                </p>
+            </div>
+            
+            <h3>Ohmic Conductors</h3>
+            
+            <p>For an <strong>ohmic conductor</strong> (at constant temperature), the current through it is directly proportional to the potential difference across it. This means:</p>
+            
+            <ul>
+                <li>If you double the voltage, you double the current</li>
+                <li>The resistance stays constant</li>
+                <li>A graph of current vs voltage is a straight line through the origin</li>
+            </ul>
+            
+            <div class="key-point">
+                <strong>Examples of ohmic conductors:</strong> Metal wires at constant temperature, fixed resistors
+            </div>
+            
+            <h3>Factors Affecting Resistance</h3>
+            
+            <p>For a wire, resistance depends on:</p>
+            <ul>
+                <li><strong>Length:</strong> Longer wires have more resistance</li>
+                <li><strong>Thickness (cross-sectional area):</strong> Thicker wires have less resistance</li>
+                <li><strong>Material:</strong> Different materials have different resistances</li>
+                <li><strong>Temperature:</strong> For most conductors, higher temperature means higher resistance</li>
+            </ul>
+            
+            <div class="example">
+                <strong>Why does length matter?</strong>
+                <p>Imagine electrons flowing through a wire like people walking through a corridor. A longer corridor means more obstacles to bump into, so more resistance. A wider corridor means people can spread out and flow more easily, so less resistance.</p>
+            </div>
+        </section>
+        
+        <section id="flashcards">
+            <h2>Test Your Understanding - Flashcards</h2>
+            <p style="margin-bottom: 20px; color: #666;">Click each card to reveal the answer</p>
+            
+            <div class="flashcards">
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="front">
+                        <div class="flashcard-label">QUESTION</div>
+                        <div class="flashcard-content">What is potential difference?</div>
+                    </div>
+                    <div class="back">
+                        <div class="flashcard-label">ANSWER</div>
+                        <div class="flashcard-content">The work done (energy transferred) per coulomb of charge that passes through a component</div>
+                    </div>
+                </div>
+                
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="front">
+                        <div class="flashcard-label">QUESTION</div>
+                        <div class="flashcard-content">What is the unit of potential difference?</div>
+                    </div>
+                    <div class="back">
+                        <div class="flashcard-label">ANSWER</div>
+                        <div class="flashcard-content">Volt (V)</div>
+                    </div>
+                </div>
+                
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="front">
+                        <div class="flashcard-label">QUESTION</div>
+                        <div class="flashcard-content">What is Ohm's Law?</div>
+                    </div>
+                    <div class="back">
+                        <div class="flashcard-label">ANSWER</div>
+                        <div class="flashcard-content">V = I R (potential difference = current × resistance)</div>
+                    </div>
+                </div>
+                
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="front">
+                        <div class="flashcard-label">QUESTION</div>
+                        <div class="flashcard-content">What is the unit of resistance?</div>
+                    </div>
+                    <div class="back">
+                        <div class="flashcard-label">ANSWER</div>
+                        <div class="flashcard-content">Ohm (Ω)</div>
+                    </div>
+                </div>
+                
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="front">
+                        <div class="flashcard-label">QUESTION</div>
+                        <div class="flashcard-content">How is a voltmeter connected in a circuit?</div>
+                    </div>
+                    <div class="back">
+                        <div class="flashcard-label">ANSWER</div>
+                        <div class="flashcard-content">In parallel (across the component being measured)</div>
+                    </div>
+                </div>
+                
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="front">
+                        <div class="flashcard-label">QUESTION</div>
+                        <div class="flashcard-content">What happens to resistance if you make a wire longer?</div>
+                    </div>
+                    <div class="back">
+                        <div class="flashcard-label">ANSWER</div>
+                        <div class="flashcard-content">Resistance increases (longer wire = more resistance)</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="quiz">
+            <h2>Quiz - Test Your Knowledge</h2>
+            
+            <div class="quiz-question">
+                <div class="question-text">1. A resistor has 12 V across it and 3 A flowing through it. What is its resistance?</div>
+                <ul class="options" data-question="1" data-answer="b">
+                    <li class="option" data-option="a">36 Ω</li>
+                    <li class="option" data-option="b">4 Ω</li>
+                    <li class="option" data-option="c">9 Ω</li>
+                    <li class="option" data-option="d">15 Ω</li>
+                </ul>
+            </div>
+            
+            <div class="quiz-question">
+                <div class="question-text">2. What is the formula for Ohm's Law?</div>
+                <ul class="options" data-question="2" data-answer="a">
+                    <li class="option" data-option="a">V = I R</li>
+                    <li class="option" data-option="b">V = I / R</li>
+                    <li class="option" data-option="c">V = R / I</li>
+                    <li class="option" data-option="d">I = V R</li>
+                </ul>
+            </div>
+            
+            <div class="quiz-question">
+                <div class="question-text">3. A component has a resistance of 5 Ω. A current of 2 A flows through it. What is the potential difference?</div>
+                <ul class="options" data-question="3" data-answer="c">
+                    <li class="option" data-option="a">2.5 V</li>
+                    <li class="option" data-option="b">7 V</li>
+                    <li class="option" data-option="c">10 V</li>
+                    <li class="option" data-option="d">3 V</li>
+                </ul>
+            </div>
+            
+            <div class="quiz-question">
+                <div class="question-text">4. Which instrument measures potential difference?</div>
+                <ul class="options" data-question="4" data-answer="d">
+                    <li class="option" data-option="a">Ammeter</li>
+                    <li class="option" data-option="b">Thermometer</li>
+                    <li class="option" data-option="c">Ohmmeter</li>
+                    <li class="option" data-option="d">Voltmeter</li>
+                </ul>
+            </div>
+            
+            <div class="quiz-question">
+                <div class="question-text">5. What happens to the resistance of a wire if you make it thicker?</div>
+                <ul class="options" data-question="5" data-answer="b">
+                    <li class="option" data-option="a">Resistance increases</li>
+                    <li class="option" data-option="b">Resistance decreases</li>
+                    <li class="option" data-option="c">Resistance stays the same</li>
+                    <li class="option" data-option="d">Resistance becomes zero</li>
+                </ul>
+            </div>
+            
+            <button class="submit-btn" onclick="checkAnswers()">Submit Answers</button>
+            
+            <div id="quiz-result" class="quiz-result"></div>
+        </section>
+    </div>
+    
+    <script>
+        let selectedAnswers = {};
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', function() {
+                const questionNum = this.parentElement.dataset.question;
+                const selectedOption = this.dataset.option;
+                this.parentElement.querySelectorAll('.option').forEach(opt => { opt.classList.remove('selected'); });
+                this.classList.add('selected');
+                selectedAnswers[questionNum] = selectedOption;
+            });
+        });
+        
+        function checkAnswers() {
+            let correct = 0;
+            let total = document.querySelectorAll('.options').length;
+            document.querySelectorAll('.options').forEach(optionList => {
+                const questionNum = optionList.dataset.question;
+                const correctAnswer = optionList.dataset.answer;
+                const userAnswer = selectedAnswers[questionNum];
+                optionList.querySelectorAll('.option').forEach(option => {
+                    const optionLetter = option.dataset.option;
+                    if (optionLetter === correctAnswer) { option.classList.add('correct'); }
+                    if (userAnswer && optionLetter === userAnswer && optionLetter !== correctAnswer) {
+                        option.classList.add('incorrect');
+                    }
+                });
+                if (userAnswer === correctAnswer) { correct++; }
+            });
+            const resultDiv = document.getElementById('quiz-result');
+            const percentage = Math.round((correct / total) * 100);
+            resultDiv.classList.add('show');
+            if (percentage >= 70) {
+                resultDiv.classList.remove('fail');
+                resultDiv.classList.add('pass');
+                resultDiv.innerHTML = `🎉 Well done! You scored ${correct}/${total} (${percentage}%)`;
+            } else {
+                resultDiv.classList.remove('pass');
+                resultDiv.classList.add('fail');
+                resultDiv.innerHTML = `📚 You scored ${correct}/${total} (${percentage}%). Review the material and try again!`;
+            }
+            document.querySelector('.submit-btn').disabled = true;
+        }
+    </script>
+</body>
+</html>
