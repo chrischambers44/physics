@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resistors and Components - GCSE Physics</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 10px; }
+        .container { max-width: 900px; margin: 0 auto; background: white; border-radius: 15px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); overflow: hidden; }
+        header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px 15px; text-align: center; }
+        h1 { font-size: 1.5em; margin-bottom: 10px; word-wrap: break-word; }
+        .subtitle { opacity: 0.9; font-size: 0.95em; }
+        section { padding: 20px 15px; }
+        h2 { color: #667eea; margin-bottom: 20px; font-size: 1.4em; border-bottom: 3px solid #667eea; padding-bottom: 10px; }
+        h3 { color: #764ba2; margin-top: 25px; margin-bottom: 15px; font-size: 1.1em; }
+        @media (min-width: 768px) { body { padding: 20px; } header { padding: 30px; } h1 { font-size: 2em; } .subtitle { font-size: 1.1em; } section { padding: 40px; } h2 { font-size: 1.8em; } h3 { font-size: 1.3em; } }
+        .learning-objective { background: #f0f4ff; border-left: 4px solid #667eea; padding: 15px; margin: 20px 0; border-radius: 5px; }
+        .key-point { background: #fff4e6; border-left: 4px solid #ff9800; padding: 15px; margin: 15px 0; border-radius: 5px; }
+        .example { background: #e8f5e9; border-left: 4px solid #4caf50; padding: 15px; margin: 15px 0; border-radius: 5px; }
+        .component-box { background: #f9f9f9; border: 2px solid #667eea; padding: 20px; margin: 20px 0; border-radius: 8px; }
+        .component-title { font-size: 1.2em; font-weight: bold; color: #667eea; margin-bottom: 10px; }
+        .flashcards { display: grid; grid-template-columns: 1fr; gap: 15px; margin: 30px 0; }
+        @media (min-width: 600px) { .flashcards { grid-template-columns: repeat(2, 1fr); gap: 20px; } }
+        @media (min-width: 900px) { .flashcards { grid-template-columns: repeat(3, 1fr); } }
+        .flashcard { background: white; border: 2px solid #667eea; border-radius: 10px; padding: 20px 15px; min-height: 120px; cursor: pointer; transition: all 0.3s ease; }
+        .flashcard:hover { transform: translateY(-5px); box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3); }
+        .flashcard.flipped .front { display: none; }
+        .flashcard.flipped .back { display: block; }
+        .flashcard .front { display: block; }
+        .flashcard .back { display: none; }
+        .flashcard-label { font-size: 0.75em; color: #667eea; font-weight: bold; margin-bottom: 10px; }
+        .flashcard-content { font-size: 1em; word-wrap: break-word; }
+        @media (min-width: 768px) { .flashcard { padding: 20px; min-height: 150px; } .flashcard-label { font-size: 0.8em; } .flashcard-content { font-size: 1.1em; } }
+        .quiz-question { background: #f9f9f9; padding: 15px; margin: 15px 0; border-radius: 10px; border: 2px solid #e0e0e0; }
+        .question-text { font-size: 1em; margin-bottom: 15px; font-weight: 500; word-wrap: break-word; }
+        @media (min-width: 768px) { .quiz-question { padding: 25px; margin: 20px 0; } .question-text { font-size: 1.2em; margin-bottom: 20px; } }
+        .options { list-style: none; }
+        .option { background: white; padding: 12px 10px; margin: 8px 0; border-radius: 8px; border: 2px solid #e0e0e0; cursor: pointer; transition: all 0.3s ease; font-size: 0.95em; }
+        @media (min-width: 768px) { .option { padding: 15px; margin: 10px 0; font-size: 1em; } }
+        .option:hover { border-color: #667eea; background: #f0f4ff; }
+        .option.selected { border-color: #667eea; background: #f0f4ff; }
+        .option.correct { border-color: #4caf50; background: #e8f5e9; }
+        .option.incorrect { border-color: #f44336; background: #ffebee; }
+        .submit-btn { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 12px 30px; font-size: 1em; border-radius: 8px; cursor: pointer; margin-top: 15px; width: 100%; }
+        @media (min-width: 768px) { .submit-btn { padding: 15px 40px; font-size: 1.1em; margin-top: 20px; width: auto; } }
+        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4); }
+        .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .quiz-result { margin-top: 15px; padding: 15px; border-radius: 8px; font-size: 1em; text-align: center; display: none; }
+        @media (min-width: 768px) { .quiz-result { margin-top: 20px; padding: 20px; font-size: 1.2em; } }
+        .quiz-result.show { display: block; }
+        .quiz-result.pass { background: #e8f5e9; color: #2e7d32; border: 2px solid #4caf50; }
+        .quiz-result.fail { background: #fff3e0; color: #e65100; border: 2px solid #ff9800; }
+        ul { margin-left: 20px; margin-top: 10px; }
+        @media (min-width: 768px) { ul { margin-left: 30px; } }
+        li { margin: 8px 0; word-wrap: break-word; }
+        p { word-wrap: break-word; overflow-wrap: break-word; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Resistors and Components</h1>
+            <p class="subtitle">Understanding different types of resistors and their behaviors</p>
+        </header>
+        
+        <section id="teach">
+            <h2>Learn</h2>
+            
+            <div class="learning-objective">
+                <strong>Learning Objectives:</strong> Understand how the resistance of components like LDRs, thermistors, and diodes changes with conditions, and explain their applications.
+            </div>
+            
+            <h3>Fixed Resistors</h3>
+            
+            <p>A fixed resistor has a constant resistance that doesn't change. Its current-voltage (I-V) graph is a straight line through the origin - this shows it obeys Ohm's Law.</p>
+            
+            <div class="key-point">
+                <strong>Remember:</strong> For a fixed resistor at constant temperature, doubling the voltage doubles the current. The resistance stays the same.
+            </div>
+            
+            <h3>Variable Resistors</h3>
+            
+            <p>Unlike fixed resistors, some components have resistances that change based on conditions. These are very useful in electronic circuits.</p>
+            
+            <div class="component-box">
+                <div class="component-title">🌡️ Thermistor (Temperature-Dependent Resistor)</div>
+                <p><strong>What it is:</strong> A resistor whose resistance changes with temperature.</p>
+                
+                <div class="key-point" style="margin-top: 15px;">
+                    <strong>How it behaves:</strong> As temperature increases, the resistance of a thermistor DECREASES.
+                </div>
+                
+                <p style="margin-top: 15px;"><strong>Why?</strong> When the thermistor gets hotter, more electrons are released and can move freely, making it easier for current to flow. Less resistance!</p>
+                
+                <div class="example">
+                    <strong>Applications:</strong>
+                    <ul>
+                        <li>Thermostats in heating systems - switch the heating on when it gets cold</li>
+                        <li>Temperature sensors in ovens and fridges</li>
+                        <li>Car engine temperature monitoring</li>
+                        <li>Fire alarms - detect temperature rise</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="component-box">
+                <div class="component-title">💡 LDR (Light-Dependent Resistor)</div>
+                <p><strong>What it is:</strong> A resistor whose resistance changes with light intensity.</p>
+                
+                <div class="key-point" style="margin-top: 15px;">
+                    <strong>How it behaves:</strong> As light intensity increases, the resistance of an LDR DECREASES.
+                </div>
+                
+                <p style="margin-top: 15px;"><strong>Why?</strong> When light shines on the LDR, it gives energy to electrons, freeing them to move. More free electrons means better conductivity and lower resistance.</p>
+                
+                <div class="example">
+                    <strong>Applications:</strong>
+                    <ul>
+                        <li>Automatic street lights - turn on when it gets dark</li>
+                        <li>Camera light meters - adjust exposure settings</li>
+                        <li>Security lights - detect when someone blocks the light</li>
+                        <li>Automatic curtains - close when it gets bright</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="component-box">
+                <div class="component-title">▷| Diode</div>
+                <p><strong>What it is:</strong> A component that only allows current to flow in one direction.</p>
+                
+                <div class="key-point" style="margin-top: 15px;">
+                    <strong>How it behaves:</strong> 
+                    <ul style="margin-top: 10px;">
+                        <li><strong>Forward direction:</strong> Very low resistance - current flows easily</li>
+                        <li><strong>Reverse direction:</strong> Very high resistance - no current flows</li>
+                    </ul>
+                </div>
+                
+                <p style="margin-top: 15px;"><strong>The threshold voltage:</strong> A diode needs a certain minimum voltage (typically about 0.6V for silicon diodes) before it will conduct in the forward direction.</p>
+                
+                <div class="example">
+                    <strong>Applications:</strong>
+                    <ul>
+                        <li>Converting AC to DC in power supplies (rectification)</li>
+                        <li>Protecting circuits from reverse current damage</li>
+                        <li>LEDs (Light Emitting Diodes) - emit light when current flows forward</li>
+                        <li>Solar panels - prevent current flowing back at night</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3>I-V Characteristics</h3>
+            
+            <p>An I-V (current-voltage) graph shows how the current through a component changes as you change the voltage across it. Different components have different characteristic graphs:</p>
+            
+            <div class="example">
+                <strong>Fixed Resistor:</strong> Straight line through the origin - current directly proportional to voltage (obeys Ohm's Law)
+            </div>
+            
+            <div class="example">
+                <strong>Filament Lamp:</strong> Curved line - resistance increases as the lamp gets hotter, so the graph curves (doesn't obey Ohm's Law)
+            </div>
+            
+            <div class="example">
+                <strong>Diode:</strong> Flat along the negative voltage axis (no current in reverse), then steep rise once forward threshold voltage is reached
+            </div>
+            
+            <h3>Practical Investigation</h3>
+            
+            <p>You need to be able to investigate how the resistance of different components changes. For thermistors and LDRs, you would:</p>
+            
+            <ul>
+                <li>Set up a circuit to measure current and voltage</li>
+                <li>Change the condition (temperature for thermistor, light for LDR)</li>
+                <li>Measure current and voltage at each condition</li>
+                <li>Calculate resistance using R = V/I</li>
+                <li>Plot a graph of resistance against temperature/light intensity</li>
+            </ul>
+        </section>
+        
+        <section id="flashcards">
+            <h2>Test Your Understanding - Flashcards</h2>
+            <p style="margin-bottom: 20px; color: #666;">Click each card to reveal the answer</p>
+            
+            <div class="flashcards">
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="front">
+                        <div class="flashcard-label">QUESTION</div>
+                        <div class="flashcard-content">What happens to a thermistor's resistance when temperature increases?</div>
+                    </div>
+                    <div class="back">
+                        <div class="flashcard-label">ANSWER</div>
+                        <div class="flashcard-content">Resistance DECREASES when temperature increases</div>
+                    </div>
+                </div>
+                
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="front">
+                        <div class="flashcard-label">QUESTION</div>
+                        <div class="flashcard-content">What happens to an LDR's resistance when light intensity increases?</div>
+                    </div>
+                    <div class="back">
+                        <div class="flashcard-label">ANSWER</div>
+                        <div class="flashcard-content">Resistance DECREASES when light intensity increases</div>
+                    </div>
+                </div>
+                
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="front">
+                        <div class="flashcard-label">QUESTION</div>
+                        <div class="flashcard-content">What does a diode do?</div>
+                    </div>
+                    <div class="back">
+                        <div class="flashcard-label">ANSWER</div>
+                        <div class="flashcard-content">Allows current to flow in one direction only (forward), blocks current in reverse direction</div>
+                    </div>
+                </div>
+                
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="front">
+                        <div class="flashcard-label">QUESTION</div>
+                        <div class="flashcard-content">Give an application of a thermistor</div>
+                    </div>
+                    <div class="back">
+                        <div class="flashcard-label">ANSWER</div>
+                        <div class="flashcard-content">Thermostats, temperature sensors, fire alarms, or engine temperature monitoring</div>
+                    </div>
+                </div>
+                
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="front">
+                        <div class="flashcard-label">QUESTION</div>
+                        <div class="flashcard-content">Give an application of an LDR</div>
+                    </div>
+                    <div class="back">
+                        <div class="flashcard-label">ANSWER</div>
+                        <div class="flashcard-content">Automatic street lights, security lights, camera light meters, or automatic curtains</div>
+                    </div>
+                </div>
+                
+                <div class="flashcard" onclick="this.classList.toggle('flipped')">
+                    <div class="front">
+                        <div class="flashcard-label">QUESTION</div>
+                        <div class="flashcard-content">What is the I-V graph of a fixed resistor?</div>
+                    </div>
+                    <div class="back">
+                        <div class="flashcard-label">ANSWER</div>
+                        <div class="flashcard-content">A straight line through the origin (shows it obeys Ohm's Law)</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="quiz">
+            <h2>Quiz - Test Your Knowledge</h2>
+            
+            <div class="quiz-question">
+                <div class="question-text">1. What happens to a thermistor's resistance when it gets colder?</div>
+                <ul class="options" data-question="1" data-answer="a">
+                    <li class="option" data-option="a">Resistance increases</li>
+                    <li class="option" data-option="b">Resistance decreases</li>
+                    <li class="option" data-option="c">Resistance stays the same</li>
+                    <li class="option" data-option="d">Resistance becomes zero</li>
+                </ul>
+            </div>
+            
+            <div class="quiz-question">
+                <div class="question-text">2. An LDR is in bright light. What happens to its resistance?</div>
+                <ul class="options" data-question="2" data-answer="b">
+                    <li class="option" data-option="a">High resistance</li>
+                    <li class="option" data-option="b">Low resistance</li>
+                    <li class="option" data-option="c">No change</li>
+                    <li class="option" data-option="d">Infinite resistance</li>
+                </ul>
+            </div>
+            
+            <div class="quiz-question">
+                <div class="question-text">3. Which component allows current to flow in only one direction?</div>
+                <ul class="options" data-question="3" data-answer="c">
+                    <li class="option" data-option="a">Thermistor</li>
+                    <li class="option" data-option="b">LDR</li>
+                    <li class="option" data-option="c">Diode</li>
+                    <li class="option" data-option="d">Fixed resistor</li>
+                </ul>
+            </div>
+            
+            <div class="quiz-question">
+                <div class="question-text">4. Why are LDRs used in automatic street lights?</div>
+                <ul class="options" data-question="4" data-answer="d">
+                    <li class="option" data-option="a">They are cheap</li>
+                    <li class="option" data-option="b">They look good</li>
+                    <li class="option" data-option="c">They are waterproof</li>
+                    <li class="option" data-option="d">Their resistance changes with light, so they can detect when it's dark</li>
+                </ul>
+            </div>
+            
+            <div class="quiz-question">
+                <div class="question-text">5. Which of these obeys Ohm's Law (at constant temperature)?</div>
+                <ul class="options" data-question="5" data-answer="a">
+                    <li class="option" data-option="a">Fixed resistor</li>
+                    <li class="option" data-option="b">Filament lamp</li>
+                    <li class="option" data-option="c">Diode</li>
+                    <li class="option" data-option="d">Thermistor</li>
+                </ul>
+            </div>
+            
+            <button class="submit-btn" onclick="checkAnswers()">Submit Answers</button>
+            
+            <div id="quiz-result" class="quiz-result"></div>
+        </section>
+    </div>
+    
+    <script>
+        let selectedAnswers = {};
+        document.querySelectorAll('.option').forEach(option => {
+            option.addEventListener('click', function() {
+                const questionNum = this.parentElement.dataset.question;
+                const selectedOption = this.dataset.option;
+                this.parentElement.querySelectorAll('.option').forEach(opt => { opt.classList.remove('selected'); });
+                this.classList.add('selected');
+                selectedAnswers[questionNum] = selectedOption;
+            });
+        });
+        
+        function checkAnswers() {
+            let correct = 0;
+            let total = document.querySelectorAll('.options').length;
+            document.querySelectorAll('.options').forEach(optionList => {
+                const questionNum = optionList.dataset.question;
+                const correctAnswer = optionList.dataset.answer;
+                const userAnswer = selectedAnswers[questionNum];
+                optionList.querySelectorAll('.option').forEach(option => {
+                    const optionLetter = option.dataset.option;
+                    if (optionLetter === correctAnswer) { option.classList.add('correct'); }
+                    if (userAnswer && optionLetter === userAnswer && optionLetter !== correctAnswer) {
+                        option.classList.add('incorrect');
+                    }
+                });
+                if (userAnswer === correctAnswer) { correct++; }
+            });
+            const resultDiv = document.getElementById('quiz-result');
+            const percentage = Math.round((correct / total) * 100);
+            resultDiv.classList.add('show');
+            if (percentage >= 70) {
+                resultDiv.classList.remove('fail');
+                resultDiv.classList.add('pass');
+                resultDiv.innerHTML = `🎉 Well done! You scored ${correct}/${total} (${percentage}%)`;
+            } else {
+                resultDiv.classList.remove('pass');
+                resultDiv.classList.add('fail');
+                resultDiv.innerHTML = `📚 You scored ${correct}/${total} (${percentage}%). Review the material and try again!`;
+            }
+            document.querySelector('.submit-btn').disabled = true;
+        }
+    </script>
+</body>
+</html>
